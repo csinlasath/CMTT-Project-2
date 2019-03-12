@@ -1,19 +1,37 @@
 {
+    "globals": {
+        "jquery": true,
+        "$": true,
+        "es6": true
+    },
     "env": {
         "browser": true,
         "commonjs": true,
+        "es6": true,
         "node": true
     },
-    "extends": "prettier",
+    "extends": [
+        "prettier",
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "plugins": [
-        "prettier"
-      ],
+        "prettier",
+        "react"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "rules": {
-        "no-duplicate-case":"error",
-        "no-empty":"error",
-        "no-extra-semi":"error",
+        "no-duplicate-case": "error",
+        "no-empty": "error",
+        "no-extra-semi": "error",
         "no-func-assign": "error",
-        "no-irregular-whitespace":"error",
+        "no-irregular-whitespace": "error",
         "no-unreachable": "error",
         "curly": "error",
         "dot-notation": "error",

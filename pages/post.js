@@ -1,8 +1,8 @@
-import Layout from '../components/MyLayout';
-import {withRouter} from 'next/router';
-import Markdown from 'react-markdown';
+/* eslint-disable react/react-in-jsx-scope */
+import Layout from "../components/MyLayout";
+import { withRouter } from "next/router";
+import Markdown from "react-markdown";
 // import fetch from 'isomorphic-unfetch';
-
 
 // const Post = (props) => (
 //     <Layout>
@@ -36,37 +36,39 @@ import Markdown from 'react-markdown';
 
 // export default Post;
 
-export default withRouter((props) => (
-    <Layout>
-        <h1>{props.router.query.title}</h1>
-        <div className="markdown">
-            <Markdown source={`
+export default withRouter(props => (
+  <Layout>
+    <h1>{props.router.query.title}</h1>
+    <div className="markdown">
+      <Markdown
+        source={`
             This is some body of example markdown
 
             ### This is a title
 
             and here's some more content.
-            `} />
-        </div>
-        <style jsx global>{`
-            .markdown {
-                font-family: 'Arial';
-            }
+            `}
+      />
+    </div>
+    <style jsx global>{`
+      .markdown {
+        font-family: "Arial";
+      }
 
-            .mdarkdown a {
-                text-decoration: none;
-                color: blue;
-            }
+      .mdarkdown a {
+        text-decoration: none;
+        color: blue;
+      }
 
-            .markdown a:hover {
-                opacity: 0.6;
-            }
+      .markdown a:hover {
+        opacity: 0.6;
+      }
 
-            .markdown h3 {
-                margin: 0;
-                padding: 0;
-                text-transform: uppercase;
-            }
-        `}</style>
-    </Layout>
-))
+      .markdown h3 {
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+      }
+    `}</style>
+  </Layout>
+));

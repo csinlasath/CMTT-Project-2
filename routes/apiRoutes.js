@@ -1,2 +1,3 @@
-const db = require('../models');
+/* eslint-disable no-unused-vars */
+const db = require("../models");
 
