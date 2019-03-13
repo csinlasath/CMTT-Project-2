@@ -7,6 +7,7 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const db = require("./models");
+const sequelize = require ("sequelize");
 
 app
   .prepare()
@@ -28,7 +29,8 @@ app
     server.get("*", (req, res) => {
       return handle(req, res);
     });
-
+    
+    db.sequelize.sync().then( () => {
     server.listen(PORT, err => {
       if (err) {
         throw err;
@@ -40,3 +42,4 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+  })
