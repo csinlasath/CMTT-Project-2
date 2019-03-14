@@ -1,4 +1,3 @@
-
 const Footer = () => (
     <footer>
         <nav className="navbar navbar-light bg-success">

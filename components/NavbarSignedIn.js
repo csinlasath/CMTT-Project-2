@@ -1,28 +1,51 @@
 import Link from 'next/link';
 
-const Navbar = () => (
+const SignedInNavbar = () => (
     <div>
         <nav className="navbar fixed-top navbar-light bg-success">
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSignOnFalse">
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSignOnTrue">
                 <span className="navbar-toggler-icon navbar-light"></span>
             </button>
-            <button className="btn btn-outline-light" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <a href="/login">Sign-In</a>
+            <button className="navbar-toggler fas fa-user" type="button" data-toggle="collapse" data-target="#navbarAccountTrue">
             </button>
-            <div className="collapse navbar-collapse" id="navbarSignOnFalse">
+            <div className="collapse navbar-collapse" id="navbarSignOnTrue">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/">Home</a>
+                        <a className="nav-link text-white" href="/dashboard">Dashboard</a>
                     </li>
+                    <div className="dropdown-divider"></div>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/p/features">Features</a>
+                        <a className="nav-link text-white" href="/track">Track</a>
                     </li>
+                    <div className="dropdown-divider"></div>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/p/about">About</a>
+                        <a className="nav-link text-white" href="/notes">Notes</a>
+                    </li>
+                    <div className="dropdown-divider"></div>
+                    <li className="nav-item">
+                        <a className="nav-link text-white" href="/records">Records</a>
+                    </li>
+                    <div className="dropdown-divider"></div>
+                    <li className="nav-item">
+                        <a className="nav-link text-white" href="/appointments">Appointments</a>
                     </li>
                 </ul>
             </div>
-
+            <div className="collapse navbar-collapse" id="navbarAccountTrue">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <a className="nav-link text-white" href="/userprofile">Account Settings</a>
+                    </li>
+                    <div className="dropdown-divider"></div>
+                    <li className="nav-item">
+                        <a className="nav-link text-white" href="/pets">Manage Pets</a>
+                    </li>
+                    <div className="dropdown-divider"></div>
+                    <li className="nav-item">
+                        <a className="nav-link text-white" href="/">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
         <style jsx> {`
                   a {
@@ -32,8 +55,20 @@ const Navbar = () => (
 
                   a:hover {
                       cursor: pointer;
-                      color: blue;
-                      font-decoration: underline;
+                      text-decoration: underline;
+                  }
+
+                  .dropdown-item {
+                      color: #000000;
+                  }
+
+                  .fa-user {
+                      color: #ffffff;
+                      font-size: 30px;
+                  }
+
+                  li {
+                    list-style-type: none;
                   }
 
                   .navbar-toggler {
@@ -49,4 +84,4 @@ const Navbar = () => (
     </div>
 );
 
-export default Navbar;
+export default SignedInNavbar;
