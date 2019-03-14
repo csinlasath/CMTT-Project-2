@@ -7,7 +7,7 @@ const Navbar = () => (
                 <span className="navbar-toggler-icon navbar-light"></span>
             </button>
             <a href="/login" className="btn btn-outline-light bg-success">
-            Sign In</a>
+            Log In</a>
             <div className="collapse navbar-collapse" id="navbarSignOnFalse">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">

@@ -15,7 +15,7 @@ const SignedInNavbar = () => (
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/track">Track</a>
+                        <a className="nav-link text-white" href="/track">Log</a>
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
