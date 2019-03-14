@@ -19,11 +19,4 @@ const Layout = (props) => (
   </div>
 );
 
-const MainLayout = (props) => (
-  <div>
-
-  </div>
-
-);
-
 export default Layout;
