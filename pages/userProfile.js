@@ -1,5 +1,5 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
-import CardBackground from '../views/card';
+import CardBackground from '../views/cardBackground';
 
 export default () => (
     <SignedInLayout>

@@ -1,5 +1,5 @@
 import Layout from '../views/layouts/mainLayout';
-import CardBackground from '../views/card';
+import CardBackground from '../views/cardBackground';
 
 export default () => (
     <Layout>
