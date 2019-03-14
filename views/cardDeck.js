@@ -5,7 +5,7 @@ const CardDeck = (props) => (
         </div>
         <style jsx> {`
                   .container {
-                      margin-top: 100px;
+                      margin-top: 50px;
                       margin-bottom: 0;
                   }
         `}</style>
