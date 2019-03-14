@@ -1,10 +1,10 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
-import CardBackground from '../views/cardBackground';
+import TrackCard from '../components/TrackCard';
 
 export default () => (
     <SignedInLayout>
-        <CardBackground>
-            
-        </CardBackground>
+            <TrackCard title="Track Excercise">
+
+            </TrackCard>
     </SignedInLayout>
 );
