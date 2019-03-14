@@ -7,7 +7,7 @@ const Navbar = () => (
                 <span className="navbar-toggler-icon navbar-light"></span>
             </button>
             <button className="btn btn-outline-light" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <a href="/p/login">Sign-In</a>
+                <a href="/login">Sign-In</a>
             </button>
             <div className="collapse navbar-collapse" id="navbarSignOnFalse">
                 <ul className="navbar-nav mr-auto">
@@ -15,10 +15,10 @@ const Navbar = () => (
                         <a className="nav-link text-white" href="/">Home</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/p/features">Features</a>
+                        <a className="nav-link text-white" href="/features">Features</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/p/about">About</a>
+                        <a className="nav-link text-white" href="/about">About</a>
                     </li>
                 </ul>
             </div>
@@ -43,8 +43,6 @@ const Navbar = () => (
                   .navbar-toggler-icon {
                       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
                   }
-
-                  
               `}</style>
     </div>
 );
