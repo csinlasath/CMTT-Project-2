@@ -1,10 +1,10 @@
 import Layout from '../views/layouts/mainLayout';
-import Card from '../views/card';
+import CardBackground from '../views/cardBackground';
 
 export default () => (
     <Layout>
-        <Card>
+        <CardBackground>
             <p>About Content Goes Here</p>
-        </Card>
+        </CardBackground>
     </Layout>
 );

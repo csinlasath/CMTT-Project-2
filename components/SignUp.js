@@ -15,7 +15,7 @@ const SignUp = () => (
                         <label htmlFor="password-login-field">Password</label>
                         <input type="password" className="form-control" id="password-login-field" placeholder="Password"></input>
                     </div>
-                    <button type="submit" className="btn btn-success login-btn">Log-in</button>
+                    <button type="submit" className="btn btn-success login-btn" id="sign-up-button">Sign Up</button>
                 </form>
                 <p className="sign-in-seperator">OR</p>
                 <a href='https://facebook.com' className='btn btn-primary social-btn fb-btn'><i className="fab fa-facebook-square"></i> Sign up via Facebook</a>

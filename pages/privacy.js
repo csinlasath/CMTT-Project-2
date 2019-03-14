@@ -1,9 +1,9 @@
 import Layout from '../views/layouts/mainLayout';
-import Card from '../views/card';
+import CardBackground from '../views/card';
 
 export default () => (
     <Layout>
-        <Card >
+        <CardBackground >
             <p><strong>Privacy Notice</strong><br></br><br></br>
                 This privacy notice discloses the privacy practices for (<a href="https://cmatt-project-2.herokuapp.com" >https://cmatt-project-2.herokuapp.com</a>). This privacy notice applies solely to information collected by this website. It will notify you of the following:<br></br><br></br>
                 What personally identifiable information is collected from you through the website, how it is used and with whom it may be shared.<br></br>
@@ -32,6 +32,6 @@ export default () => (
                 While we use encryption to protect sensitive information transmitted online, we also protect your information offline. Only employees who need the information to perform a specific job (for example, billing or customer service) are granted access to personally identifiable information. The computers/servers in which we store personally identifiable information are kept in a secure environment.<br></br><br></br>
 
                 <strong>If you feel that we are not abiding by this privacy policy, you should contact us immediately or via email.</strong></p>
-        </Card>
+        </CardBackground>
     </Layout>
 );

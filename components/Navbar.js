@@ -6,17 +6,18 @@ const Navbar = () => (
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSignOnFalse">
                 <span className="navbar-toggler-icon navbar-light"></span>
             </button>
-            <button className="btn btn-outline-light" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <a href="/login">Sign-In</a>
-            </button>
+            <a href="/login" className="btn btn-outline-light bg-success">
+            Sign In</a>
             <div className="collapse navbar-collapse" id="navbarSignOnFalse">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <a className="nav-link text-white" href="/">Home</a>
                     </li>
+                    <div className="dropdown-divider"></div>
                     <li className="nav-item">
                         <a className="nav-link text-white" href="/features">Features</a>
                     </li>
+                    <div className="dropdown-divider"></div>
                     <li className="nav-item">
                         <a className="nav-link text-white" href="/about">About</a>
                     </li>
@@ -32,8 +33,7 @@ const Navbar = () => (
 
                   a:hover {
                       cursor: pointer;
-                      color: blue;
-                      font-decoration: underline;
+                      text-decoration: underline;
                   }
 
                   .navbar-toggler {
