@@ -3,20 +3,21 @@ import CardDeck from '../views/cardDeck';
 
 export default () => (
     <SignedInLayout>
+        <h2 className="card-title text-success">My Pet Dashboard</h2>
         <CardDeck>
-            <a href="/track" className="card btn text-center">
+            <a href="/trackfood" className="card btn text-center">
                 <i className="card-img-top fas fa-utensils"></i>
                 <div className="card-body">
                     <h5 className="card-title text-success">Track Food</h5>
                 </div>
             </a>
-            <a href="/track" className="card btn text-center">
+            <a href="/trackwater" className="card btn text-center">
                 <i className="card-img-top fas fa-glass-whiskey"></i>
                 <div className="card-body">
                     <h5 className="card-title text-success">Track Water</h5>
                 </div>
             </a>
-            <a href="/track" className="card btn text-center">
+            <a href="/trackmedicine" className="card btn text-center">
                 <i className="card-img-top fas fa-pills"></i>
                 <div className="card-body">
                     <h5 className="card-title text-success">Track Medicine</h5>
@@ -24,28 +25,59 @@ export default () => (
             </a>
         </CardDeck>
         <CardDeck>
-            <a href="/track" className="card btn text-center">
+            <a href="/trackweight" className="card btn text-center">
                 <i className="card-img-top fas fa-weight"></i>
                 <div className="card-body">
                     <h5 className="card-title text-success">Track Weight</h5>
                 </div>
             </a>
-            <a href="/track" className="card btn text-center">
+            <a href="/trackexercise" className="card btn text-center">
                 <i className="card-img-top fas fa-running"></i>
                 <div className="card-body">
                     <h5 className="card-title text-success">Track Excercise</h5>
                 </div>
             </a>
-            <a href="/track" className="card btn text-center">
+            <a href="/trackpotty" className="card btn text-center">
                 <i className="card-img-top fas fa-poop"></i>
                 <div className="card-body">
                     <h5 className="card-title text-success">Track Potty</h5>
                 </div>
             </a>
         </CardDeck>
+        <CardDeck>
+            <a href="#" className="card btn text-center">
+                <i className="card-img-top fas fa-plus dashboard-available"></i>
+                <div className="card-body">
+                    <h5 className="card-title dashboard-available">Add Widget</h5>
+                </div>
+            </a>
+            <a href="#" className="card btn text-center">
+                <i className="card-img-top fas fa-plus dashboard-available"></i>
+                <div className="card-body">
+                    <h5 className="card-title dashboard-available">Add Widget</h5>
+                </div>
+            </a>
+            <a href="#" className="card btn text-center">
+                <i className="card-img-top fas fa-plus dashboard-available"></i>
+                <div className="card-body">
+                    <h5 className="card-title dashboard-available">Add Widget</h5>
+                </div>
+            </a>
+        </CardDeck>
         <style jsx> {`
-                  .container {
+                  .card:hover {
+                      transition: 1s;
+                      transform: scale(1.2);
+                      border: 2px solid #000000;
+                  }
+
+                  .dashboard-available {
+                      color: gray;
+                  }
+
+                  h2 {
                       margin-top: 100px;
+                      text-align: center;
                   }
 
                   i { 
@@ -54,11 +86,6 @@ export default () => (
                       margin-top: 30px;     
                   }
 
-                  .card:hover {
-                      transition: 1s;
-                      transform: scale(1.2);
-                      border: 2px solid #000000;
-                  }
         `}</style>
     </SignedInLayout>
 );
