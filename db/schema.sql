@@ -13,3 +13,12 @@ CREATE TABLE users (
     phoneNumber INT(10),
     firebaseId VARCHAR(100),
 );
+
+DROP DATABASE IF EXISTS 'pets_db';
+
+
+CREATE DATABASE 'pets_db';
+
+
+
+

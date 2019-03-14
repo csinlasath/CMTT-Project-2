@@ -9,6 +9,8 @@ app.prepare()
     const server = express();
     const PORT = process.env.PORT || 3000;
 
+    var db = require("./models");
+
     server.use(express.urlencoded({ extended: false }));
     server.use(express.json());
     server.use(express.static("pages"));
@@ -23,6 +25,7 @@ app.prepare()
       return handle(req, res);
     });
 
+    db.sequelize.sync({ force: true }).then(function() {
     server.listen(PORT, (err) => {
       if (err) throw err;
       console.log(`>App is Ready and Listening on http://localhost: ${PORT}`);
@@ -32,3 +35,4 @@ app.prepare()
     console.error(ex.stack);
     process.exit(1);
   });
+});
