@@ -11,10 +11,10 @@ const UserDetails = (props) => (
                     <h5 className="card-title text-success">Name:</h5>
                 </div>
                 <div className="col-md-4">
-                    <p id="userName">{props.userName}</p>
+                    <p id="user-name">{props.userName}</p>
                 </div>
                 <div className="col-md-6">
-                    <button id="userNameButton" className="card btn text-center">Change Name</button>
+                    <button id="userNameButton" className="btn btn-outline-dark text-center">Change Name</button>
                 </div>
             </div>
         </div>
@@ -24,10 +24,10 @@ const UserDetails = (props) => (
                     <h5 className="card-title text-success">Email:</h5>
                 </div>
                 <div className="col-md-4">
-                    <p id="userEmail">{props.userEmail}</p>
+                    <p id="user-email">{props.userEmail}</p>
                 </div>
                 <div className="col-md-6">
-                    <button className="card btn text-center">Change Email</button>
+                    <button className="btn btn-outline-dark text-center">Change Email</button>
                 </div>
             </div>
         </div>
@@ -37,10 +37,10 @@ const UserDetails = (props) => (
                     <h5 className="card-title text-success">Phone Number:</h5>
                 </div>
                 <div className="col-md-4">
-                    <p id="userPhone">{props.userPhone}</p>
+                    <p id="user-phone">{props.userPhone}</p>
                 </div>
                 <div className="col-md-6">
-                    <button className="card btn text-center">Change Phone Number</button>
+                    <button className="btn btn-outline-dark text-center">Change Phone Number</button>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ const UserDetails = (props) => (
                     <h5 className="card-title text-success">Want to change your password?</h5>
                 </div>
                 <div className="col-md-6">
-                    <button className="card btn text-center">Change Password</button>
+                    <button className="btn btn-outline-dark text-center">Change Password</button>
                 </div>
             </div>
         </div>
