@@ -26,7 +26,7 @@ app.prepare().then(() => {
 
   db.sequelize
     .sync({ force: true })
-    .then(function() {
+    .then(() => {
       server.listen(PORT, err => {
         if (err) throw err;
         console.log(`>App is Ready and Listening on http://localhost: ${PORT}`);

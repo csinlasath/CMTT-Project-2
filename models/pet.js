@@ -25,6 +25,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    dob: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isDate: true
+      }
+    },
     age: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -38,8 +45,6 @@ module.exports = (sequelize, DataTypes) => {
   pet.associate = models => {
     pet.hasOne(models.chart);
   };
-
-
 
   return pet;
 };

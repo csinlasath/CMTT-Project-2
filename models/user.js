@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
     email: {
       type: DataTypes.STRING,
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+  }
 
     return user;
   };
-};
