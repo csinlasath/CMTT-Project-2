@@ -25,3 +25,8 @@ yarn-error.log*
 
 # next.js build output
 .next
+/.next
+
+#sequelize
+/config
+
