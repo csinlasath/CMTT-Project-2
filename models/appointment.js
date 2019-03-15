@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       date: DataTypes.DATE,
     });
     appointment.associate = models => {
-      appointment.belongsTo(models.pet) 
+      appointment.belongsTo(models.chart) 
         
     
     };
