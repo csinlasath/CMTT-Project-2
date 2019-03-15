@@ -1,1 +1,1 @@
-INSERT INTO pet ('petName','petType','breed','gender','age') VALUES ('Fido','cat','Siamese','Male','5');
+INSERT INTO pet ('petName','petType','breed','gender', 'dob','age') VALUES ('Fido','cat','Siamese','Male', '2014-01-01','5');

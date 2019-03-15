@@ -18,7 +18,7 @@ const SignIn = () => (
                         <input type="checkbox" className="form-check-input" id="remember-login-check"></input>
                         <label className="form-check-label" htmlFor="remember-login-check">Remember Me</label>
                     </div>
-                    <a href="/dashboard" className="btn btn-success login-btn" id="sign-in-button" >Log-in</a>
+                    <a href="/pets" className="btn btn-success login-btn" id="sign-in-button" >Log-in</a>
                 </form>
                 <p className="sign-in-seperator">OR</p>
                 <a href='https://facebook.com' className='btn btn-primary social-btn fb-btn'><i className="fab fa-facebook-square"></i> Continue on Facebook</a>

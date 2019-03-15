@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     vetLastName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,10 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     vetPhone: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+
     weight: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -42,8 +45,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     }
-
-
   });
 
   chart.associate = models => {
