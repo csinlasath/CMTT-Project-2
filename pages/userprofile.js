@@ -1,10 +1,10 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
-import CardDeck from '../views/cardBackground';
+import CardBackground from '../views/cardBackground';
 
 const name = "bob";
 
 const UserDetails = (props) => (
-    <div>
+    <div id="user-detail-div">
         <div className="card-body">
             <div className="row">
                 <div className="col-md-2">
@@ -54,21 +54,25 @@ const UserDetails = (props) => (
                 </div>
             </div>
         </div>
+        <style jsx>{`
+            #user-detail-div {
+                margin-top: 25px;
+            }`
+        }</style>
     </div>
 );
 export default () => (
     <SignedInLayout>
-        
+        <CardBackground>
         <h2 id="accountSettings" className="card-title text-success">Account Settings</h2>
-        <style jsx>{`
-            #accountSettings {
-                margin-top: 5%;
-                text-align: center;
-            }`
-        }</style>
-        <CardDeck>
             <UserDetails userName = {name} userEmail = "JoeIsTheDirt@Joe'sDirt.com" userPhone = "1-800-Joe-Is-Dirt"/>
-        </CardDeck>
+        </CardBackground>
+        <style jsx>{`
+           #accountSettings {
+            margin-top: 25px;
+            text-align: center;
+        }`
+        }</style>
     </SignedInLayout>
 );
 
