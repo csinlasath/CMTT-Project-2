@@ -7,11 +7,8 @@ const UserDetails = (props) => (
     <div id="user-detail-div">
         <div className="card-body">
             <div className="row">
-                <div className="col-md-2">
-                    <h5 className="card-title text-success">Name:</h5>
-                </div>
-                <div className="col-md-4">
-                    <p id="user-name">{props.userName}</p>
+                <div className="col-md-6">
+                    <h5 className="card-title text-success">Name: {props.userName}</h5>
                 </div>
                 <div className="col-md-6">
                     <button id="userNameButton" className="btn btn-outline-dark text-center">Change Name</button>
@@ -20,11 +17,8 @@ const UserDetails = (props) => (
         </div>
         <div className="card-body">
             <div className="row">
-                <div className="col-md-2">
-                    <h5 className="card-title text-success">Email:</h5>
-                </div>
-                <div className="col-md-4">
-                    <p id="user-email">{props.userEmail}</p>
+                <div className="col-md-6">
+                    <h5 className="card-title text-success">Email: {props.userEmail}</h5>
                 </div>
                 <div className="col-md-6">
                     <button className="btn btn-outline-dark text-center">Change Email</button>
@@ -33,11 +27,8 @@ const UserDetails = (props) => (
         </div>
         <div className="card-body">
             <div className="row">
-                <div className="col-md-2">
-                    <h5 className="card-title text-success">Phone Number:</h5>
-                </div>
-                <div className="col-md-4">
-                    <p id="user-phone">{props.userPhone}</p>
+                <div className="col-md-6">
+                    <h5 className="card-title text-success">Phone Number: {props.userPhone}</h5>
                 </div>
                 <div className="col-md-6">
                     <button className="btn btn-outline-dark text-center">Change Phone Number</button>
