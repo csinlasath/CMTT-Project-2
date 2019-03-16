@@ -70,7 +70,7 @@ export default () => (
         <style jsx> {`
                   .card:hover {
                       transition: 1s;
-                      transform: scale(1.2);
+                      transform: scale(1.1);
                       border: 2px solid #000000;
                   }
 
