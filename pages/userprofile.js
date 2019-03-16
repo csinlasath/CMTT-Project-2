@@ -11,7 +11,7 @@ const UserDetails = (props) => (
                     <h5 id="user-name" className="card-title text-success">Name: {props.userName}</h5>
                 </div>
                 <div className="col-md-6">
-                    <button id="user-name-button" className="btn btn-outline-dark text-center">Change Name</button>
+                    <button id="user-name-button" className="btn btn-success text-center">Change Name</button>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@ const UserDetails = (props) => (
                     <h5 id="user-email" className="card-title text-success">Email: {props.userEmail}</h5>
                 </div>
                 <div className="col-md-6">
-                    <button id="user-email-button" className="btn btn-outline-dark text-center">Change Email</button>
+                    <button id="user-email-button" className="btn btn-success text-center">Change Email</button>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@ const UserDetails = (props) => (
                     <h5 id="user-phone" className="card-title text-success">Phone Number: {props.userPhone}</h5>
                 </div>
                 <div className="col-md-6">
-                    <button id="user-phone-button" className="btn btn-outline-dark text-center">Change Phone Number</button>
+                    <button id="user-phone-button" className="btn btn-success text-center">Change Phone Number</button>
                 </div>
             </div>
         </div>
@@ -41,15 +41,15 @@ const UserDetails = (props) => (
                     <h5 className="card-title text-success">Want to change your password?</h5>
                 </div>
                 <div className="col-md-6">
-                    <button id="user-password-button" className="btn btn-outline-dark text-center">Change Password</button>
+                    <button id="user-password-button" className="btn btn-success text-center">Change Password</button>
                 </div>
             </div>
         </div>
         <style jsx>{`
             #user-detail-div {
                 margin-top: 25px;
-            }`
-        }</style>
+            }
+        `}</style>
     </div>
 );
 export default () => (

@@ -16,7 +16,7 @@ const AddPetForm = (props) => (
                     <h5 id="pet-gender" className="card-title text-success">Pet Gender:<input id="pet-gender-input" className="pet-form-input" /></h5>
 
                     <h5 id="pet-pic" className="card-title text-success">Pet Picture:<input id="myfiles" type="file"/></h5>
-                    <button id="pet-form-submit" className="btn btn-outline-dark">Submit</button>
+                    <button id="pet-form-submit" className="btn btn-success">Submit</button>
         </form>
         <style jsx> {`
                 #pet-form-title{
