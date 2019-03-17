@@ -49,7 +49,9 @@ module.exports = (sequelize, DataTypes) => {
 
   record.associate = models => {
     record.hasMany(models.appointment, {
-      foreignKey: { allowNull: false }
+      foreignKey: { 
+        field: appointmentId,
+        allowNull: false }
     });
   };
 

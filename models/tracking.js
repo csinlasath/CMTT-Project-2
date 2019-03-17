@@ -175,7 +175,9 @@ module.exports = (sequelize, DataTypes) => {
       }(
         (tracking.associate = models => {
           tracking.belongsTo(models.pet, {
-            foreignKey: { allowNull: false }
+            foreignKey: { 
+              field: petId,
+              allowNull: false }
           });
 
           return tracking;

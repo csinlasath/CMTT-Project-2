@@ -33,6 +33,6 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-markdown": "^4.0.6",
-    "sequelize": "^4.43.0"
+    "sequelize": "^4.8.0"
   }
 }
