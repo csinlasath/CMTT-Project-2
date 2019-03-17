@@ -35,16 +35,34 @@ module.exports = (sequelize, DataTypes) => {
     age: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+
+    imageId: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
 
   pet.associate = models => {
-    pet.belongsTo(models.user);
-  };
+    pet.hasMany(
+      models.user,
+      {
+        foreignKey: {
+          field: "userId",
+          allowNull: false
+        }
+      },
 
-  pet.associate = models => {
-    pet.hasOne(models.chart);
-  };
+      (pet.associate = models => {
+        pet.hasOne(models.record, {
+          foreignKey: {
+            field: "petId",
+            allowNull: { allowNull: false }
+          }
+        });
 
-  return pet;
+        return pet;
+      })
+    );
+  };
 };
