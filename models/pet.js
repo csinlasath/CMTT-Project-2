@@ -53,10 +53,13 @@ module.exports = (sequelize, DataTypes) => {
 
   pet.associate = models => {
     pet.hasOne(models.record, {
-      field: recordId,
-      foreignKey: { allowNull: false }
+      foreignKey: { 
+        field: recordId,
+        allowNull: false },
     });
+
+    return pet;
   };
 
-  return pet;
-};
+  
+}

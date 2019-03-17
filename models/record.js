@@ -53,7 +53,8 @@ module.exports = (sequelize, DataTypes) => {
         field: appointmentId,
         allowNull: false }
     });
+    return record;
   };
 
-  return record;
+ 
 };
