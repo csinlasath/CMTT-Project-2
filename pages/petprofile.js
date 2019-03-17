@@ -1,14 +1,12 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
-import CardBackground from '../views/cardBackground';
-import CardDeck from '../views/cardDeck';
-import { chosenPet, chosenImg } from '../pages/pets';
+import {chosenPet, chosenImg} from '../pages/assets/js/app';
 
 console.log(chosenPet, chosenImg);
 export default () => (
     <SignedInLayout>
         <br></br>
         <div className="top row">
-            <div class="pic col-md-4">
+            <div className="pic col-md-4">
                 <img src={chosenImg}></img>
                 <button className="appt btn btn-success">Set Next Appointment</button>
             </div>
