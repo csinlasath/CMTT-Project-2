@@ -44,7 +44,7 @@ const SignedInNavbar = () => (
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/">Logout</a>
+                        <button className="nav-link text-white" id="log-off-button">Logout</button>
                     </li>
                 </ul>
             </div>
