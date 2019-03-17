@@ -7,20 +7,20 @@ const SignUp = () => (
             <div className="card-body">
                 <form>
                     <div className="form-group">
-                        <label htmlFor="email-login-field">Email Address</label>
-                        <input type="email" className="form-control" id="email-login-field" placeholder="Example: johnsmith@gmail.com"></input>
+                        <label htmlFor="email-signup-field">Email Address</label>
+                        <input type="email" className="form-control" id="email-signup-field" placeholder="Example: johnsmith@gmail.com"></input>
                         <small id="email-help" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password-login-field">Password</label>
-                        <input type="password" className="form-control" id="password-login-field" placeholder="Password"></input>
+                        <label htmlFor="password-signup-field">Password</label>
+                        <input type="password" className="form-control" id="password-signup-field" placeholder="Password"></input>
                     </div>
                     <button type="submit" className="btn btn-success login-btn" id="sign-up-button">Sign Up</button>
                 </form>
                 <p className="sign-in-seperator">OR</p>
-                <a href='https://facebook.com' className='btn btn-primary social-btn fb-btn'><i className="fab fa-facebook-square"></i> Sign up via Facebook</a>
-                <a href='https://twitter.com' className='btn btn-success social-btn tw-btn'><i className="fab fa-twitter-square"></i> Sign up via Twitter</a>
-                <a href='https://google.com' className='btn btn-success social-btn gg-btn'><i className="fab fa-google"></i> Sign up via Google</a>
+                <button className='btn btn-primary social-btn fb-btn' id="facebook-sign-up"><i className="fab fa-facebook-square"></i> Sign up via Facebook</button>
+                <button className='btn btn-success social-btn tw-btn' id="twitter-sign-up"><i className="fab fa-twitter-square"></i> Sign up via Twitter</button>
+                <button className='btn btn-success social-btn gg-btn' id="google-sign-up"><i className="fab fa-google"></i> Sign up via Google</button>
                 <small id="small-print" className="form-text text-muted">By continuing, you agree to Project Bacchus' <a href="/terms" >Terms of Service</a>, and <a href="/privacy" >Privacy Policy</a> .</small>
             </div>
             <div className="card-footer bg-success">

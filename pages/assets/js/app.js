@@ -13,7 +13,10 @@ var pullfiles = function(){
     }    
 }
 
-document.querySelector("#myfiles").onchange=pullfiles;
+if (pullfiles === null) {
+    document.querySelector("#myfiles").onchange=pullfiles;
+}
+
     
 $("#pet-form-submit").on("click", () => {
     var petName = $("#pet-name").val().trim();

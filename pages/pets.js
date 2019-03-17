@@ -51,9 +51,9 @@ class CardContainer extends React.Component {
         var elements = [];
         for (var i = 0; i < petArray.length; i++) {
             if (imgArray[i] !== undefined) {
-                elements.push(<Card name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
+                elements.push(<Card key={"pet-number-" + i} name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
             }else {
-                elements.push(<Card name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
+                elements.push(<Card key={"pet-number-" + i} name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
             };
         };
         return (
