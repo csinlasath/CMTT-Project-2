@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     petType: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     breed: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -21,10 +23,12 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     gender: {
       type: DataTypes.STRING,
       allowNull: false
     },
+
     dob: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         isDate: true
       }
     },
+
     age: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -44,22 +49,22 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   pet.associate = models => {
-    pet.hasMany(models.user, {
-      foreignKey: { 
-        field: userId,
-        allowNull: false }
+    pet.hasMany(models.logger, {
+      foreignKey: {
+        allowNull: false
+      }
     });
-  };
-
-  pet.associate = models => {
     pet.hasOne(models.record, {
-      foreignKey: { 
-        field: recordId,
-        allowNull: false },
+      foreignKey: {
+        allowNull: false
+      }
     });
-
-    return pet;
+    pet.belongsTo(models.user, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
 
-  
-}
+  return pet;
+};
