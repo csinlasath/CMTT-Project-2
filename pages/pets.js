@@ -1,43 +1,20 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
+import {chosenPet, chosenImg, profile, petArray, imgArray} from '../pages/assets/js/app';
+import { DH_UNABLE_TO_CHECK_GENERATOR } from 'constants';
 
-let petArray = [{
-    petName: "Bacchus",
-    id: "1",
-    sex: "Male",
-    dob: "05/25/2004",
-    vetFirstName: "Bruce",
-    vetLastName: "Baker",
-    vetPhone: "913-469-1377",
-    nextVet: "04/02/19",
-    weight: "65",
-    lastFed: "Friday 3:15pm"
-},
-{
-    petName: "Enzo",
-    id: "2"
-},
-{
-    petName: "Rizzy",
-    id: "3"
-}];
-let imgArray = [
-    "/assets/images/bacchus.jpg",
-    "/assets/images/enzo.jpg",
-];
 const defaultImage = ["/assets/images/bacchus.jpg"];
-let chosenPet = petArray[0];
-let chosenImg = imgArray[0];
+
 class Card extends React.Component {
     render() {
         return (
             <div key={this.props.id} className="jsx-3607384524 container2">
                 <div className="jsx-3607384524 card text-center">
                     <h1 className="jsx-3607384524">{this.props.name}</h1>
-                    <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image}></img>
+                    <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image} onClick={() => profile(this.props.id)}></img>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
-                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Quick Feed</button>
+                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={() => feed(this.props.id)}>Quick Feed</button>
                         <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
                     </div>
                 </div>
@@ -51,9 +28,9 @@ class CardContainer extends React.Component {
         var elements = [];
         for (var i = 0; i < petArray.length; i++) {
             if (imgArray[i] !== undefined) {
-                elements.push(<Card key={"pet-number-" + i} name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
+                elements.push(<Card key={"pet-number-" + (i + 1)} name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
             }else {
-                elements.push(<Card key={"pet-number-" + i} name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
+                elements.push(<Card key={"pet-number-" + (i + 1)} name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
             };
         };
         return (
@@ -150,5 +127,3 @@ export default () => (
         `}</style>
     </SignedInLayout>
 );
-
-export {chosenPet, chosenImg};
