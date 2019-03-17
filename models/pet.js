@@ -44,25 +44,22 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   pet.associate = models => {
-    pet.hasMany(
-      models.user,
-      {
-        foreignKey: {
-          field: "userId",
-          allowNull: false
-        }
-      },
-
-      (pet.associate = models => {
-        pet.hasOne(models.record, {
-          foreignKey: {
-            field: "petId",
-            allowNull: { allowNull: false }
-          }
-        });
-
-        return pet;
-      })
-    );
+    pet.hasMany(models.user, {
+      foreignKey: { 
+        field: userId,
+        allowNull: false }
+    });
   };
-};
+
+  pet.associate = models => {
+    pet.hasOne(models.record, {
+      foreignKey: { 
+        field: recordId,
+        allowNull: false },
+    });
+
+    return pet;
+  };
+
+  
+}
