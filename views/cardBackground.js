@@ -7,7 +7,7 @@ const CardBackground = (props) => (
         </div>
         <style jsx> {`
                   .card {
-                      border: 2px solid green;
+                      border: 1px solid green;
                   }
                   
                   .container {

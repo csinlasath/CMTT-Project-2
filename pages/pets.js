@@ -1,60 +1,77 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
-import $ from 'jquery';
 
-let petArray = [];
-let imgArray = [];
-
-petArray = [{
+let petArray = [{
+    petName: "Bacchus",
+    id: "1"
+},
+{
     petName: "Enzo",
-    id: "47"
+    id: "2"
+},
+{
+    petName: "Rizzy",
+    id: "3"
 }];
-imgArray = [
+let imgArray = [
     "/assets/images/bacchus.jpg",
-]
+    "/assets/images/enzo.jpg",
+];
+const defaultImage = ["/assets/images/bacchus.jpg"];
 
-for (let i = 0; i < petArray.length; i++) {
-    let petDiv = "<div className='container2'>";
-    petDiv += "<div className='card text-center'>";
-    petDiv += "<h1>" + petArray[i].petName + "</h1>";
-    petDiv += "<img data-id=" + petArray[i].id + " src=" + imgArray[i] + "className='petSelect'></img>";
-    petDiv += "<br></br><div className='buttons'><button className='btn btn-success'>Quick Feed</button><button className='btn btn-success'>Log Data</button>";
-    petDiv += "</div></div></div>";
-    $("#pets").prepend(petDiv);
+class Card extends React.Component {
+    render() {
+        return (
+            <div className="jsx-3607384524 container2">
+                <div className="jsx-3607384524 card text-center">
+                    <h1 className="jsx-3607384524">{this.props.name}</h1>
+                    <img className="jsx-3607384524" src={this.props.image}></img>
+                    <br className="jsx-3607384524"></br>
+                    <div className="jsx-3607384524 buttons">
+                        <button id="feed" className="jsx-3607384524 btn btn-success">Quick Feed</button>
+                        <button className="jsx-3607384524 btn btn-success">Log Data</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+};
+
+class CardContainer extends React.Component {
+    render() {
+        var elements = [];
+        for (var i = 0; i < petArray.length; i++) {
+            if (imgArray[i] !== undefined) {
+                elements.push(<Card name={petArray[i].petName} image={imgArray[i]} />);
+            }else {
+                elements.push(<Card name={petArray[i].petName} image={defaultImage[0]} />);
+            };
+        };
+        console.log(imgArray[2]);
+        return (
+            <div id="pets" className="jsx-3607384524 card-deck">
+                {elements}
+                <div className="jsx-3607384524 container2">
+                    <a href="/addpet" className="jsx-3607384524 card btn text-center addPet">
+                        <i className="jsx-3607384524 card-img-top fas fa-plus dashboard-available"></i>
+                        <div className="jsx-3607384524 card-body">
+                            <h5 className="jsx-3607384524 card-title dashboard-available">Add Pet</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        );
+    };
 };
 
 export default () => (
     <SignedInLayout>
         <CardBackground>
-            <h1>
-                My Pets
-        </h1>
+            <h1>My Pets</h1>
             <hr></hr>
             <div className="container">
-                <div id="pets" className="card-deck">
-                    <div className="container2">
-                        <div className="card text-center">
-                            <h1>Bacchus</h1>
-                            <img src="/assets/images/bacchus.jpg"></img>
-                            <br></br>
-                            <div className="buttons">
-                                <button id="feed" className="btn btn-success">Quick Feed</button>
-                                <button className="btn btn-success">Log Data</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="container2">
-                        <a href="/addpet" className="card btn text-center addPet">
-                            <i className="card-img-top fas fa-plus dashboard-available"></i>
-                            <div className="card-body">
-                                <h5 className="card-title dashboard-available">Add Pet</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                <CardContainer></CardContainer>
             </div>
-
-
         </CardBackground>
         <style jsx> {`
                 .addPet {
@@ -125,13 +142,4 @@ export default () => (
         `}</style>
     </SignedInLayout>
 );
-
-// $(document).on("click", "#feed", () => {
-
-// });
-
-// $(document).on("click", ".petSelect", () => {
-//     let petID = this.data-id.val();
-
-// });
 
