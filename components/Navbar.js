@@ -6,6 +6,7 @@ const Navbar = () => (
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSignOnFalse">
                 <span className="navbar-toggler-icon navbar-light"></span>
             </button>
+            <a href="/"><i style={{color: "white", fontSize: "40px"}} className="fas fa-paw"></i></a>
             <a href="/login" className="btn btn-outline-light bg-success">
             Log In</a>
             <div className="collapse navbar-collapse" id="navbarSignOnFalse">
@@ -30,19 +31,17 @@ const Navbar = () => (
                     color: #ffffff;
                     text-align: center;
                   }
-
                   a:hover {
                       cursor: pointer;
                       text-decoration: underline;
                   }
-
                   .navbar-toggler {
                       border-color: #ffffff;
                   }
-
                   .navbar-toggler-icon {
                       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
                   }
+                  
               `}</style>
     </div>
 );

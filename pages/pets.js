@@ -3,7 +3,14 @@ import CardBackground from '../views/cardBackground';
 
 let petArray = [{
     petName: "Bacchus",
-    id: "1"
+    id: "1",
+    sex: "Male",
+    dob: "05/25/2004",
+    vetFirstName: "Bruce",
+    vetLastName: "Baker",
+    vetPhone: "913-469-1377",
+    weight: "65",
+    lastFed: "Friday 3:15pm"
 },
 {
     petName: "Enzo",
@@ -18,18 +25,19 @@ let imgArray = [
     "/assets/images/enzo.jpg",
 ];
 const defaultImage = ["/assets/images/bacchus.jpg"];
-
+let chosenPet = petArray[0];
+let chosenImg = imgArray[0];
 class Card extends React.Component {
     render() {
         return (
-            <div className="jsx-3607384524 container2">
+            <div key={this.props.id} className="jsx-3607384524 container2">
                 <div className="jsx-3607384524 card text-center">
                     <h1 className="jsx-3607384524">{this.props.name}</h1>
-                    <img className="jsx-3607384524" src={this.props.image}></img>
+                    <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image}></img>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
-                        <button id="feed" className="jsx-3607384524 btn btn-success">Quick Feed</button>
-                        <button className="jsx-3607384524 btn btn-success">Log Data</button>
+                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Quick Feed</button>
+                        <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
                     </div>
                 </div>
             </div>
@@ -42,12 +50,11 @@ class CardContainer extends React.Component {
         var elements = [];
         for (var i = 0; i < petArray.length; i++) {
             if (imgArray[i] !== undefined) {
-                elements.push(<Card name={petArray[i].petName} image={imgArray[i]} />);
+                elements.push(<Card name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
             }else {
-                elements.push(<Card name={petArray[i].petName} image={defaultImage[0]} />);
+                elements.push(<Card name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
             };
         };
-        console.log(imgArray[2]);
         return (
             <div id="pets" className="jsx-3607384524 card-deck">
                 {elements}
@@ -143,3 +150,4 @@ export default () => (
     </SignedInLayout>
 );
 
+export {chosenPet, chosenImg};
