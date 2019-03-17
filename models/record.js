@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const chart = sequelize.define("chart", {
+  const record = sequelize.define("record", {
     vetFirstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -47,11 +47,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  chart.associate = models => {
-    chart.hasMany(models.appointment, {
-      foreignKey: { allowNull: false }
+  record.associate = models => {
+    record.hasMany(models.appointment, {
+      foreignKey: { 
+        allowNull: false 
+      }
+    });
+    record.belongsTo(models.pet, {
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
 
-  return chart;
+  return record;
 };

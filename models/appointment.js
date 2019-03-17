@@ -1,10 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   const appointment = sequelize.define("appointment", {
     type: DataTypes.STRING,
-    date: DataTypes.DATE,
+    date: DataTypes.DATE
   });
+
   appointment.associate = models => {
-    appointment.belongsTo(models.chart)
+    appointment.belongsTo(models.pet, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
 
   return appointment;

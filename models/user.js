@@ -18,11 +18,10 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = models => {
     user.hasMany(models.pet, {
       foreignKey: {
-        field: "petId",
         allowNull: false
       }
     });
-  }
-
-    return user;
   };
+  
+  return user;
+};
