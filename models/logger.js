@@ -84,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     medicineName: {
-      name: DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 45]
@@ -121,6 +121,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     run: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -136,6 +137,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 45]
       }
     },
+
     other: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -178,18 +180,15 @@ module.exports = (sequelize, DataTypes) => {
 
   });
 
-logger.associate = models => {
-  logger.belongsTo(models.pet, {
-    foreignKey: {
-      field: petId,
-      allowNull: false}
+  logger.associate = models => {
+    logger.belongsTo(models.pet, {
+      foreignKey: {
+        allowNull: false
+      }
     });
-  
-    return logger;
   };
   
-
- 
+  return logger;
 };
 
 

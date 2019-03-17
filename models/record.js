@@ -50,11 +50,15 @@ module.exports = (sequelize, DataTypes) => {
   record.associate = models => {
     record.hasMany(models.appointment, {
       foreignKey: { 
-        field: appointmentId,
-        allowNull: false }
+        allowNull: false 
+      }
     });
-    return record;
+    record.belongsTo(models.pet, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
 
- 
+  return record;
 };

@@ -3,14 +3,14 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     date: DataTypes.DATE
   });
+
   appointment.associate = models => {
     appointment.belongsTo(models.pet, {
       foreignKey: {
-        field: "petId"
-      },
-      type: DataTypes.INTEGER
+        allowNull: false
+      }
     });
-
-    return appointment;
   };
+
+  return appointment;
 };
