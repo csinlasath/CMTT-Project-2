@@ -9,6 +9,7 @@ let petArray = [{
     vetFirstName: "Bruce",
     vetLastName: "Baker",
     vetPhone: "913-469-1377",
+    nextVet: "04/02/19",
     weight: "65",
     lastFed: "Friday 3:15pm"
 },

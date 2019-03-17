@@ -10,6 +10,7 @@ export default () => (
         <div className="top row">
             <div class="pic col-md-4">
                 <img src={chosenImg}></img>
+                <button className="appt btn btn-success">Set Next Appointment</button>
             </div>
             <div className="info col-md-4">
                 <h1>{chosenPet.petName}</h1>
@@ -17,6 +18,7 @@ export default () => (
                 <h5>Weight: {chosenPet.weight} lbs.</h5>
                 <h5>Vet: Dr. {chosenPet.vetFirstName} {chosenPet.vetLastName}</h5>
                 <h5>Phone: {chosenPet.vetPhone}</h5>
+                <h5>Next Appt: {chosenPet.nextVet}</h5>
                 <h5>Last Fed: {chosenPet.lastFed}</h5>
             </div>
             <div className="buttons col-md-4">
@@ -66,6 +68,10 @@ export default () => (
             </a>
         </div>
         <style jsx> {`
+                .appt {
+                    max-width: 280px;
+                    margin: auto;
+                }
                 .info {
                     width: 100%;
                     margin: auto;
@@ -101,7 +107,6 @@ export default () => (
                     max-width: 280px;
                     margin: auto;
                     border: 2px solid green;
-                    border-radius: 5%;
                     width: 100%;
                 }
                 i { 
