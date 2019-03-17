@@ -6,6 +6,7 @@ const SignedInNavbar = () => (
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSignOnTrue">
                 <span className="navbar-toggler-icon navbar-light"></span>
             </button>
+            <a href="/pets"><i style={{color: "white", fontSize: "40px"}} className="fas fa-paw"></i></a>
             <button className="navbar-toggler fas fa-user" type="button" data-toggle="collapse" data-target="#navbarAccountTrue">
             </button>
             <div className="collapse navbar-collapse" id="navbarSignOnTrue">
@@ -31,6 +32,7 @@ const SignedInNavbar = () => (
                     </li>
                 </ul>
             </div>
+            
             <div className="collapse navbar-collapse" id="navbarAccountTrue">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
