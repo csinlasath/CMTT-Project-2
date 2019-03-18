@@ -18,12 +18,12 @@ const SignIn = () => (
                         <input type="checkbox" className="form-check-input" id="remember-login-check"></input>
                         <label className="form-check-label" htmlFor="remember-login-check">Remember Me</label>
                     </div>
-                    <a href="/pets" className="btn btn-success login-btn" id="sign-in-button" >Log-in</a>
+                    <button type="submit" className="btn btn-success login-btn" id="sign-in-button" >Log-in</button>
                 </form>
                 <p className="sign-in-seperator">OR</p>
-                <button href='https://facebook.com' className='btn btn-primary social-btn fb-btn' id="facebook-sign-up"><i className="fab fa-facebook-square"></i> Continue on Facebook</button>
-                <button href='https://twitter.com' className='btn btn-success social-btn tw-btn' id="facebook-sign-up"><i className="fab fa-twitter-square"></i> Continue on Twitter</button>
-                <button href='https://google.com' className='btn btn-success social-btn gg-btn' id="facebook-sign-up"><i className="fab fa-google"></i> Continue on Google</button>
+                <button className='btn btn-primary social-btn fb-btn' id="facebook-sign-in"><i className="fab fa-facebook-square"></i> Continue on Facebook</button>
+                <button className='btn btn-success social-btn tw-btn' id="twitter-sign-in"><i className="fab fa-twitter-square"></i> Continue on Twitter</button>
+                <button className='btn btn-success social-btn gg-btn' id="google-sign-up"><i className="fab fa-google"></i> Continue on Google</button>
                 <small id="small-print" className="form-text text-muted">By continuing, you agree to Project Bacchus' <a href="/terms" >Terms of Service</a>, and <a href="/privacy" >Privacy Policy</a> .</small>
             </div>
             <div className="card-footer bg-success">

@@ -7,42 +7,42 @@ export default () => (
         <CardBackground>
             <h2 className="card-title text-success">Log Pet Health</h2>
             <CardDeck>
-                <a href="/trackfood" className="card btn text-center">
+                <a href="/logfood" className="card btn text-center">
                     <i className="card-img-top fas fa-utensils"></i>
                     <div className="card-body">
-                        <h5 className="card-title text-success">Track Food</h5>
+                        <h5 className="card-title text-success">Log Food</h5>
                     </div>
                 </a>
-                <a href="/trackwater" className="card btn text-center">
+                <a href="/logwater" className="card btn text-center">
                     <i className="card-img-top fas fa-glass-whiskey"></i>
                     <div className="card-body">
-                        <h5 className="card-title text-success">Track Water</h5>
+                        <h5 className="card-title text-success">Log Water</h5>
                     </div>
                 </a>
-                <a href="/trackmedicine" className="card btn text-center">
+                <a href="/logmedicine" className="card btn text-center">
                     <i className="card-img-top fas fa-pills"></i>
                     <div className="card-body">
-                        <h5 className="card-title text-success">Track Medicine</h5>
+                        <h5 className="card-title text-success">Log Medicine</h5>
                     </div>
                 </a>
             </CardDeck>
             <CardDeck>
-                <a href="/trackweight" className="card btn text-center">
+                <a href="/logweight" className="card btn text-center">
                     <i className="card-img-top fas fa-weight"></i>
                     <div className="card-body">
-                        <h5 className="card-title text-success">Track Weight</h5>
+                        <h5 className="card-title text-success">Log Weight</h5>
                     </div>
                 </a>
-                <a href="/trackexercise" className="card btn text-center">
+                <a href="/logexercise" className="card btn text-center">
                     <i className="card-img-top fas fa-running"></i>
                     <div className="card-body">
-                        <h5 className="card-title text-success">Track Excercise</h5>
+                        <h5 className="card-title text-success">Log Excercise</h5>
                     </div>
                 </a>
-                <a href="/trackpotty" className="card btn text-center">
+                <a href="/logpotty" className="card btn text-center">
                     <i className="card-img-top fas fa-poop"></i>
                     <div className="card-body">
-                        <h5 className="card-title text-success">Track Potty</h5>
+                        <h5 className="card-title text-success">Log Potty</h5>
                     </div>
                 </a>
             </CardDeck>
@@ -65,7 +65,7 @@ export default () => (
 
                   .card:hover {
                       transition: 1s;
-                      transform: scale(1.2);
+                      transform: scale(1.1);
                       border: 2px solid #000000;
                   }
         `}</style>

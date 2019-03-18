@@ -1,7 +1,6 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
 import {chosenPet, chosenImg, profile, petArray, imgArray} from '../pages/assets/js/app';
-import { DH_UNABLE_TO_CHECK_GENERATOR } from 'constants';
 
 const defaultImage = ["/assets/images/bacchus.jpg"];
 
@@ -28,9 +27,9 @@ class CardContainer extends React.Component {
         var elements = [];
         for (var i = 0; i < petArray.length; i++) {
             if (imgArray[i] !== undefined) {
-                elements.push(<Card key={"pet-number-" + (i + 1)} name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
+                elements.push(<Card key={"card-number-" + (i + 1)} name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
             }else {
-                elements.push(<Card key={"pet-number-" + (i + 1)} name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
+                elements.push(<Card key={"card-number-" + (i + 1)} name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
             };
         };
         return (
@@ -55,7 +54,7 @@ export default () => (
             <h1>My Pets</h1>
             <hr></hr>
             <div className="container">
-                <CardContainer></CardContainer>
+                <CardContainer />
             </div>
         </CardBackground>
         <style jsx> {`
