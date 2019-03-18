@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const logger = sequelize.define("logger", {
+    logType: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+
     foodMeal: {
       type: DataTypes.STRING,
       allowNull: true,

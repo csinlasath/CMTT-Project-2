@@ -1,8 +1,8 @@
-import Layout from '../views/layouts/mainLayout';
+import AuthenticationLayout from '../views/layouts/authenticationLayout';
 import SignIn from '../components/SignIn';
 
 export default () => (
-    <Layout>
+    <AuthenticationLayout signOnButton="Sign-Up">
         <SignIn />
-    </Layout>
+    </AuthenticationLayout>
 );

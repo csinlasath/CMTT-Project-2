@@ -9,14 +9,17 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
 
-    password: {
+    firebaseUID: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     }
+
   });
 
   user.associate = models => {
     user.hasMany(models.pet, {
+      onDelete: "cascade",
       foreignKey: {
         allowNull: false
       }

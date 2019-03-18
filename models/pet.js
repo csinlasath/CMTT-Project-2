@@ -45,11 +45,13 @@ module.exports = (sequelize, DataTypes) => {
 
   pet.associate = models => {
     pet.hasMany(models.logger, {
+      onDelete: "cascade",
       foreignKey: {
         allowNull: false
       }
     });
     pet.hasOne(models.record, {
+      onDelete: "cascade",
       foreignKey: {
         allowNull: false
       }
