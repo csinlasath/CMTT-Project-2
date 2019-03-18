@@ -1,6 +1,3 @@
-
-import $ from 'jquery';
-
 let petArray = [{
     petName: "Bacchus",
     id: "1",
@@ -29,11 +26,11 @@ let imgArray = [
     "/assets/images/bacchus.jpg",
     "/assets/images/enzo.jpg",
 ];
-function getPets() {
-    $.get("/api/pets", function (data) {
-        petArray = data;
-    });
-};
+// function getPets() {
+//     $.get("/api/pets", function (data) {
+//         petArray = data;
+//     });
+// };
 let chosenPet = petArray[0];
 let chosenImg = imgArray[0];
 let chosenId = 0;
@@ -46,28 +43,28 @@ const profile = (id) => {
 
 export { chosenImg, chosenPet, profile, petArray, imgArray };
 
-var pullfiles = function(){ 
-    // love the query selector
-    var fileInput = document.querySelector("#myfiles");
-    var files = fileInput.files;
-    // cache files.length 
-    var fl = files.length;
-    var i = 0;
+// var pullfiles = function(){ 
+//     // love the query selector
+//     var fileInput = document.querySelector("#myfiles");
+//     var files = fileInput.files;
+//     // cache files.length 
+//     var fl = files.length;
+//     var i = 0;
 
-    while ( i < fl) {
-        // localize file var in the loop
-        var file = files[i];
-        i++;
-    }    
-}
+//     while ( i < fl) {
+//         // localize file var in the loop
+//         var file = files[i];
+//         i++;
+//     }    
+// }
 
-if (pullfiles === null) {
-    document.querySelector("#myfiles").onchange=pullfiles;
-}
+// if (pullfiles === null) {
+//     document.querySelector("#myfiles").onchange=pullfiles;
+// }
 
     
-$("#pet-form-submit").on("click", () => {
-    var petName = $("#pet-name").val().trim();
-    console.log(petName);
-});
+// $("#pet-form-submit").on("click", () => {
+//     var petName = $("#pet-name").val().trim();
+//     console.log(petName);
+// });
 

@@ -37,11 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
 
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-
     imageId: {
       type: DataTypes.STRING,
       allowNull: true

@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const logger = sequelize.define("logger", {
     foodMeal: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 45]
       }
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
     foodMeasure: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 45]
       }
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
     waterMeasure: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 45]
       }
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
 
     waterMeal: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
 
     waterNotes: {
@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
 
     medicineName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 45]
       }
@@ -101,7 +101,7 @@ module.exports = (sequelize, DataTypes) => {
 
     medicineTime: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
 
     medicineMeal: {

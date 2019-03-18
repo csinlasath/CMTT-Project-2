@@ -16,7 +16,7 @@ const SignedInNavbar = () => (
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/track">Log</a>
+                        <a className="nav-link text-white" href="/log">Log</a>
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
@@ -36,7 +36,7 @@ const SignedInNavbar = () => (
             <div className="collapse navbar-collapse" id="navbarAccountTrue">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/userprofile">Account Settings</a>
+                        <a className="nav-link text-white" href="/userprofile" id="account-settings">Account Settings</a>
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
@@ -44,7 +44,7 @@ const SignedInNavbar = () => (
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">
-                        <button className="nav-link text-white" id="log-off-button">Logout</button>
+                        <a className="nav-link text-white bg-success" id="log-off-button">Logout</a>
                     </li>
                 </ul>
             </div>
