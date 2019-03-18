@@ -58,6 +58,15 @@ const checkIfSignedIn = (url) => {
 //   }
 // }
 
+  // server.get("/pets", isAuthenticated, (req, res) => {
+  //   app.render(req, res);
+  // });
+  // server.get("/p/:id", (req, res) => {
+  //   const actualPage = "/post";
+  //   const queryParams = { title: req.params.id };
+  //   app.render(req, res, actualPage, queryParams);
+  // });
+
 const express = require("express");
 const next = require("next");
 const dev = process.env.NODE_ENV !== "production";
@@ -73,15 +82,16 @@ app.prepare().then(() => {
   server.use(express.static("pages"));
   server.use(checkIfSignedIn("/"));
 
-  // server.get("/pets", isAuthenticated, (req, res) => {
-  //   app.render(req, res);
-  // });
-  // server.get("/p/:id", (req, res) => {
-  //   const actualPage = "/post";
-  //   const queryParams = { title: req.params.id };
-  //   app.render(req, res, actualPage, queryParams);
-  // });
+  server.get("/service-worker", (req, res) => {
+    const filePath = join(__dirname, "static/service-worker.js");
+    app.serveStatic(req, res, filePath);
+  });
 
+  require("./routes/userRoutes")(server);
+  require("./routes/petRoutes")(server);
+  require("./routes/loggerRoutes")(server);
+  require("./routes/appointmentRoutes")(server);
+  require("./routes/recordRoutes")(server);
 
   server.get("*", (req, res) => {
     return handle(req, res);

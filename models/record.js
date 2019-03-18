@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
     vetLastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 45]
       }
@@ -18,37 +18,38 @@ module.exports = (sequelize, DataTypes) => {
 
     vetPhone: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
 
     weight: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
 
     diagnosis: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
 
     prescriptions: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
 
     symptoms: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     notes: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     }
   });
 
   record.associate = models => {
     record.hasMany(models.appointment, {
+      onDelete: "cascade",
       foreignKey: { 
         allowNull: false 
       }

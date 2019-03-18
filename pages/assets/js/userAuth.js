@@ -10,7 +10,13 @@ $(document).ready(() => {
     firebase.initializeApp(config);
 
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/service-worker.js");
+        // navigator.serviceWorker.register("/service-worker.js", {scope:"/"});
+        console.log("Supported")
+        navigator.serviceWorker.register("/static/service-worker.js").then((reg) => {
+            console.log("Registered Service Worker");
+        }).catch(err => {
+            console.error(`Service Worker Error: ${err}`);
+        });
     }
 
     var isUserSignedIn = false;
@@ -109,7 +115,7 @@ $(document).ready(() => {
 
     $(document).on("click", "#facebook-sign-in", () => {
         signInWithFacebook();
-        
+
     });
 
     $(document).on("click", "#twitter-sign-in", () => {
@@ -252,9 +258,9 @@ $(document).ready(() => {
         }
     });
 
-    
 
-    
+
+
 
 });
 

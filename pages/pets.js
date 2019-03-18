@@ -1,8 +1,8 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
-import {chosenPet, chosenImg, profile, petArray, imgArray} from '../pages/assets/js/app';
+import {profile, petArray, imgArray} from '../components/constants/petData';
 
-const defaultImage = ["/assets/images/bacchus.jpg"];
+const defaultImage = ["/static/images/bacchus.jpg"];
 
 class Card extends React.Component {
     render() {
