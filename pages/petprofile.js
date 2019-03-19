@@ -1,5 +1,6 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
-import {chosenPet, chosenImg} from '../pages/assets/js/app';
+import fetch from 'isomorphic-unfetch';
+import Link from 'next/link';
 
 console.log(chosenPet, chosenImg);
 export default () => (
