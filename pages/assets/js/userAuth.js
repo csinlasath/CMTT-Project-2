@@ -12,7 +12,7 @@ $(document).ready(() => {
     }
 
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("../../service-worker.js", {scope: "/"}).then((reg) => {
+        navigator.serviceWorker.register("../../service-worker.js", { scope: "/" }).then((reg) => {
             console.log("Registered Service Worker");
         }).catch(err => {
             console.error(`Service Worker Error: ${err}`);
@@ -97,7 +97,7 @@ $(document).ready(() => {
                     firebaseUID: firebase.auth().currentUser.uid
                 }
             }).then((res) => {
-                window.location.assign ("/pets");
+                window.location.assign("/pets");
             });
         });
     };
@@ -159,21 +159,15 @@ $(document).ready(() => {
             localStorage.setItem("firebase_phoneNumber", firebasePhoneNumber);
             localStorage.setItem("firebase_photoURL", firebasePhotoURL);
 
-            // firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "/api/token/verify",
-            //         data: {
-            //             fbToken: idToken
-            //         }
-            //     }).then((res) => {
-            //         console.log("Sent Token")
-            //     });
-            //     console.log(`Firebase ID Token: ${idToken}`);
-            //     console.log("Sent Token to Server");
-            //   }).catch(function(error) {
-            //     if (error) throw error;
-            //   });
+            $.ajax({
+                type: "GET",
+                url: "/api/users/firebase/" + firebaseUserId
+            }).then((res) => {
+                localStorage.setItem("dbUserId", res.id);
+                localStorage.setItem("dbFirstName", res.firstName);
+                localStorage.setItem("dbLastName", res.lastName);
+            });
+
         }
         else {
             console.error("not logged in");

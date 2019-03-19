@@ -1,6 +1,9 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
 
+import { server } from "../config/server-config"
+import fetch from 'isomorphic-unfetch';
+
 var userFirstName = "John"
 var userLastName = "Doe"
 var userEmailAddress = "johndoe@yahoo.com"
@@ -133,6 +136,14 @@ const AccountSettings = (props) => (
                         <div className="col-md-12">
                             <button type="submit" className="btn btn-danger account-settings-btn" id="delete-account-btn">Delete Account</button>
                             <hr></hr>
+                            <ul>
+                                {/* {props.pets.map(({pet}) => (
+                                    <li key={pet.id}>
+                                        <p>{pet.petName}</p>
+                                    </li>
+                                ))} */}
+
+                            </ul>
                         </div>
 
                     </div>
@@ -171,17 +182,31 @@ const AccountSettings = (props) => (
         `}</style>
     </div>
 );
-export default () => (
-    <SignedInLayout>
-        <CardBackground>
-            <h2 id="accountSettings" className="card-title text-success">Account Settings</h2>
-            <hr></hr>
-            <AccountSettings firstName={userFirstName} lastName={userLastName} emailAddress={userEmailAddress} phoneNumber={userPhoneNumber} />
-        </CardBackground>
-        <style jsx>{`
-           #accountSettings {
-            text-align: center;
-        }`
-        }</style>
-    </SignedInLayout>
-);
+
+AccountSettings.getInitialProps = async function() {
+    const res = await fetch(`${server}/api/users/all`);
+    const data = await res.json();
+  
+    console.log(`Pets data fetched: ${data[0].firebaseUID}`);
+  
+    return {
+      pets: data
+    }
+  }
+
+export default AccountSettings;
+
+// export default () => (
+//     <SignedInLayout>
+//         <CardBackground>
+//             <h2 id="accountSettings" className="card-title text-success">Account Settings</h2>
+//             <hr></hr>
+//             <AccountSettings firstName={userFirstName} lastName={userLastName} emailAddress={userEmailAddress} phoneNumber={userPhoneNumber} />
+//         </CardBackground>
+//         <style jsx>{`
+//            #accountSettings {
+//             text-align: center;
+//         }`
+//         }</style>
+//     </SignedInLayout>
+// );

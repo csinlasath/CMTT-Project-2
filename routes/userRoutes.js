@@ -34,6 +34,18 @@ module.exports = function (server) {
         console.log("Sent Back Pets Data for User");
     });
 
+    server.get("/api/users/firebase/:firebaseUID", (req, res) => {
+        db.user.findOne({
+            where: {
+                firebaseUID: req.params.firebaseUID
+            }
+        }).then((dbUser) => {
+            return res.json(dbUser);
+        });
+        
+        console.log("Sent Back Pets Data for User");
+    });
+
     server.post("/api/users/add", (req, res) => {
         console.log(req.body);
         db.user.create({
