@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const Header = () => (
+const HeaderAuthentication = () => (
     <div>
         <Head>
             <title>Project Bacchus</title>
@@ -19,10 +19,10 @@ const Header = () => (
             <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
             <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
             {/* App Logic */}
-            <script src="/assets/js/user.js"></script>
+            <script src="/assets/js/userAuth.js"></script>
             <script src="/assets/js/app.js" defer></script>
         </Head>
     </div>
 );
 
-export default Header;
+export default HeaderAuthentication;

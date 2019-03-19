@@ -47,12 +47,13 @@ module.exports = function (server) {
         console.log(req.body);
         db.logger.create({
             logType: req.body.logType,
+            foodName: req.body.foodName,
             foodMeal: req.body.foodMeal,
             foodMeasure: req.body.foodMeasure,
             foodNotes: req.body.foodNotes,
             waterMeasure: req.body.waterMeasure,
             waterMeal: req.body.waterMeal,
-            waterNotes: req.body.waterMeal,
+            waterNotes: req.body.waterNotes,
             urine: req.body.urine,
             urineMeasure: req.body.urineMeasure,
             urineColor: req.body.urineColor,
@@ -65,14 +66,12 @@ module.exports = function (server) {
             medicineTime: req.body.medicineTime,
             medicineMeal: req.body.medicineMeal,
             medicineNotes: req.body.medicineNotes,
-            walk: req.body.walk,
-            run: req.body.run,
-            play: req.body.play,
-            other: req.body.other,
+            exerciseType: req.body.exerciseType,
             exerciseTimeMinutes: req.body.exerciseTimeMinutes,
             exerciseTimeHours: req.body.exerciseTimeHours,
-            excerciseNotes: req.body.excerciseNotes,
+            exerciseNotes: req.body.exerciseNotes,
             weight: req.body.weight,
+            weightNotes: req.body.weightNotes,
             petId: req.params.petId
         }).then((dbLog) => {
             res.status(204);
