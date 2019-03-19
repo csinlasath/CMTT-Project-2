@@ -1,9 +1,8 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
-import {profile, petArray, imgArray} from '../components/constants/petData';
+import fetch from 'isomorphic-unfetch';
 
 const defaultImage = ["/static/images/bacchus.jpg"];
-
 class Card extends React.Component {
     render() {
         return (
@@ -13,7 +12,7 @@ class Card extends React.Component {
                     <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image} onClick={() => profile(this.props.id)}></img>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
-                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={() => feed(this.props.id)}>Quick Feed</button>
+                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Quick Feed</button>
                         <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
                     </div>
                 </div>
@@ -23,13 +22,49 @@ class Card extends React.Component {
 };
 
 class CardContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            pets: []
+        };
+    }
+    componentDidMount() {
+        fetch("api/pets/all")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        pets: result
+                    });
+                    // pets = result;
+                    console.log(result);
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+
+            )
+    }
     render() {
-        var elements = [];
-        for (var i = 0; i < petArray.length; i++) {
-            if (imgArray[i] !== undefined) {
-                elements.push(<Card key={"card-number-" + (i + 1)} name={petArray[i].petName} image={imgArray[i]} id={petArray[i].id}/>);
-            }else {
-                elements.push(<Card key={"card-number-" + (i + 1)} name={petArray[i].petName} image={defaultImage[0]} id={petArray[i].id}/>);
+        const { error, isLoaded, pets } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            console.log(pets);
+            var elements = [];
+            for (var i = 0; i < pets.length; i++) {
+                elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={defaultImage[0]} id={pets[i].id} />);
             };
         };
         return (
@@ -49,15 +84,15 @@ class CardContainer extends React.Component {
 };
 
 export default () => (
-    <SignedInLayout>
-        <CardBackground>
-            <h1>My Pets</h1>
-            <hr></hr>
-            <div className="container">
-                <CardContainer />
-            </div>
-        </CardBackground>
-        <style jsx> {`
+<SignedInLayout>
+    <CardBackground>
+        <h1>My Pets</h1>
+        <hr></hr>
+        <div className="container">
+            <CardContainer />
+        </div>
+    </CardBackground>
+    <style jsx> {`
                 .addPet {
                     padding-top: 100px;
                 }
@@ -124,5 +159,5 @@ export default () => (
                 }
 
         `}</style>
-    </SignedInLayout>
+</SignedInLayout>
 );
