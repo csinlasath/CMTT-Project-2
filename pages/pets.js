@@ -1,6 +1,8 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
 import fetch from 'isomorphic-unfetch';
+import Link from 'next/link';
+import { quickFeed } from '../pages/assets/js/app';
 
 const defaultImage = ["/static/images/bacchus.jpg"];
 class Card extends React.Component {
@@ -9,11 +11,15 @@ class Card extends React.Component {
             <div key={this.props.id} className="jsx-3607384524 container2">
                 <div className="jsx-3607384524 card text-center">
                     <h1 className="jsx-3607384524">{this.props.name}</h1>
-                    <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image} onClick={() => profile(this.props.id)}></img>
+                    <Link href={`/petprofile?id=${this.props.id}`}>
+                    <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image}></img>
+                    </Link>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
-                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Quick Feed</button>
+                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={() => quickFeed(this.props.id)}>Quick Feed</button>
+                        <Link href={`/log?id=${this.props.id}`}>
                         <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -39,8 +45,6 @@ class CardContainer extends React.Component {
                         isLoaded: true,
                         pets: result
                     });
-                    // pets = result;
-                    console.log(result);
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
