@@ -1,16 +1,16 @@
-$(document).ready(() => {
-    var config = {
-        apiKey: "AIzaSyDjkXALCW34tlzUum78_lpDSkytaTHHBnA",
-        authDomain: "pet-track-63483.firebaseapp.com",
-        databaseURL: "https://pet-track-63483.firebaseio.com",
-        projectId: "pet-track-63483",
-        storageBucket: "pet-track-63483.appspot.com",
-        messagingSenderId: "697781297758"
-    };
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-    }
+var config = {
+    apiKey: "AIzaSyDjkXALCW34tlzUum78_lpDSkytaTHHBnA",
+    authDomain: "pet-track-63483.firebaseapp.com",
+    databaseURL: "https://pet-track-63483.firebaseio.com",
+    projectId: "pet-track-63483",
+    storageBucket: "pet-track-63483.appspot.com",
+    messagingSenderId: "697781297758"
+};
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+}
 
+$(document).ready(() => {
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("../../service-worker.js", { scope: "/" }).then((reg) => {
             console.log("Registered Service Worker");
@@ -18,18 +18,6 @@ $(document).ready(() => {
             console.error(`Service Worker Error: ${err}`);
         });
     }
-    var isSignedIn;
-    var hasRedirected = "false";
-
-    // if(hasRedirected === localStorage.getItem("false")) {
-    //     hasRedirected = "true";
-    //     window.location.assign
-    // }
-
-
-    // if (firebase.auth().currentUser && hasRedirected === "false") {
-
-    // }
 
     var accountEmail;
     var accountName;
@@ -158,10 +146,11 @@ $(document).ready(() => {
             localStorage.setItem("firebase_displayName", firebaseDisplayName);
             localStorage.setItem("firebase_phoneNumber", firebasePhoneNumber);
             localStorage.setItem("firebase_photoURL", firebasePhotoURL);
+            localStorage.setItem("dbCurrentPetId", 1);
 
             $.ajax({
                 type: "GET",
-                url: "/api/users/firebase/" + firebaseUserId
+                url: "/api/users/firebase/" + localStorage.getItem("firebase_userId")
             }).then((res) => {
                 localStorage.setItem("dbUserId", res.id);
                 localStorage.setItem("dbFirstName", res.firstName);

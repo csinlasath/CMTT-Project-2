@@ -4,6 +4,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    foodName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 45]
+      }
+    },
 
     foodMeal: {
       type: DataTypes.STRING,
@@ -14,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     foodMeasure: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -22,12 +29,12 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     foodNotes: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
     waterMeasure: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -40,12 +47,12 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     waterNotes: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
     urine: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -53,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     urineMeasure: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -61,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     urineColor: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -69,17 +76,17 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     stool: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
     stoolMeasure: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
     stoolColor: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
@@ -97,7 +104,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     medicineMeasure: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -105,7 +112,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     medicineTime: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
@@ -117,6 +124,14 @@ module.exports = (sequelize, DataTypes) => {
     medicineNotes: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+
+    exerciseType: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 45]
+      }
     },
 
     walk: {
@@ -152,7 +167,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     exerciseTimeMinutes: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -160,7 +175,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     exerciseTimeHours: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 45]
@@ -170,18 +185,20 @@ module.exports = (sequelize, DataTypes) => {
     exerciseNotes: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+
+    weight: {
+      type: DataTypes.STRING,
+      allowNull: true,
       validate: {
         len: [1, 45]
       }
     },
 
-    weight: {
-      type: DataTypes.INTEGER,
+    weightNotes: {
+      type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: [1, 45]
-      }
-    }
+    },
 
   });
 
@@ -192,7 +209,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   };
-  
+
   return logger;
 };
 

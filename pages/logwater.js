@@ -8,14 +8,10 @@ export default () => (
         <TrackCard title="Track Liquid Intake">
             <i className="card-img-top fas fa-glass-whiskey text-success"></i>
             <div className="form-group">
-                <label htmlFor="water-activity-field">What did they drink?</label>
-                <input type="text" className="form-control" id="water-activity-field"></input>
-            </div>
-            <div className="form-group">
                 <label htmlFor="water-activity-field">How much did they drink?</label>
                 <div className="row">
                     <div className="col-md-9">
-                        <input type="number" className="form-control" id="water-activity-field"></input>
+                        <input type="number" className="form-control" id="water-amount-field"></input>
                     </div>
                     <div className="col-md-3">
                         <select type="number" className="form-control" id="water-measurement">

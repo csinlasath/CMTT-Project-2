@@ -2,39 +2,27 @@ module.exports = (sequelize, DataTypes) => {
   const pet = sequelize.define("pet", {
     petName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 45]
-      }
+      allowNull: true,
     },
 
     petType: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 45]
-      }
+      allowNull: true,
     },
 
     breed: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 45]
-      }
+      allowNull: true,
     },
 
     gender: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
 
     dob: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isDate: true
-      }
+      allowNull: true,
     },
 
     imageId: {

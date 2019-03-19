@@ -12,10 +12,10 @@ export default () => (
                 <input type="text" className="form-control" id="food-activity-field"></input>
             </div>
             <div className="form-group">
-                <label htmlFor="food-activity-field">How much did they eat?</label>
+                <label htmlFor="food-amount-field">How much did they eat?</label>
                 <div className="row">
                     <div className="col-md-9">
-                        <input type="number" className="form-control" id="food-activity-field"></input>
+                        <input type="number" className="form-control" id="food-amount-field"></input>
                     </div>
                     <div className="col-md-3">
                         <select type="number" className="form-control" id="food-measurement">

@@ -2,7 +2,6 @@ import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-import { quickFeed } from '../pages/assets/js/app';
 
 const defaultImage = ["/static/images/bacchus.jpg"];
 class Card extends React.Component {
@@ -16,9 +15,9 @@ class Card extends React.Component {
                     </Link>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
-                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={() => quickFeed(this.props.id)}>Quick Feed</button>
+                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success quick-feed-btn">Quick Feed</button>
                         <Link href={`/log?id=${this.props.id}`}>
-                        <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
+                        <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success log-data-btn">Log Data</button>
                         </Link>
                     </div>
                 </div>
