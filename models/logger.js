@@ -200,6 +200,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
 
+    notesTitle: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    notes: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
+
   });
 
   logger.associate = models => {
