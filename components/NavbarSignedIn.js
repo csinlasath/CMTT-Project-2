@@ -36,7 +36,7 @@ const SignedInNavbar = () => (
             <div className="collapse navbar-collapse" id="navbarAccountTrue">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="/userprofile" id="account-settings">Account Settings</a>
+                        <a className="nav-link text-white" href="/accountsettings" id="account-settings">Account Settings</a>
                     </li>
                     <div className="dropdown-divider"></div>
                     <li className="nav-item">

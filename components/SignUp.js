@@ -2,7 +2,7 @@ const SignUp = () => (
     <div className="container">
         <div className="card">
             <div className="card-header bg-success">
-                <h5 className="card-title text-light">Sign up</h5>
+                <h5 className="card-title text-light">Sign up for Project Bacchus</h5>
             </div>
             <div className="card-body">
                 <form>

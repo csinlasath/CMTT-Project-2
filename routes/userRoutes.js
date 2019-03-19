@@ -37,13 +37,18 @@ module.exports = function (server) {
     server.post("/api/users/add", (req, res) => {
         console.log(req.body);
         db.user.create({
+            provider: req.body.provider,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
+            phoneNumber: req.body.phoneNumber,
+            photoURL: req.body.photoURL,
             firebaseUID: req.body.firebaseUID
         }).then((dbUser) => {
+            res.status(204);
             return res.json(dbUser);
         });
 
-        res.status(204).end();
         console.log("User was ADDED");
     });
 
@@ -63,7 +68,7 @@ module.exports = function (server) {
         db.user.destroy({}).then((dbUser) => {
             return res.json(dbUser);
         });
-        
+
         console.log("ALL Users were DELETED");
     });
 

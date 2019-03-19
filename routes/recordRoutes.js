@@ -54,10 +54,10 @@ module.exports = function (server) {
             notes: req.body.notes
 
         }).then((dbRecord) => {
+            res.status(204);
             return res.json(dbRecord);
         });
 
-        res.status(204).end();
         console.log("Record was ADDED");
     });
 
