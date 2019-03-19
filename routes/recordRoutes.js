@@ -41,7 +41,7 @@ module.exports = function (server) {
         console.log("Sent Back Record Data");
     });
 
-    server.post("/api/records/add", (req, res) => {
+    server.post("/api/records/add/:petId", (req, res) => {
         console.log(req.body);
         db.record.create({
             vetFirstName: req.body.vetFirstName,
@@ -51,8 +51,8 @@ module.exports = function (server) {
             diagnosis: req.body.diagnosis,
             prescriptions: req.body.prescriptions,
             symptoms: req.body.symptoms,
-            notes: req.body.notes
-
+            notes: req.body.notes,
+            petId: req.params.petId
         }).then((dbRecord) => {
             res.status(204);
             return res.json(dbRecord);

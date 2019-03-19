@@ -43,7 +43,7 @@ module.exports = function (server) {
         console.log("Sent Back Food Data");
     });
 
-    server.post("/api/log/add", (req, res) => {
+    server.post("/api/log/add/:petId", (req, res) => {
         console.log(req.body);
         db.logger.create({
             logType: req.body.logType,
@@ -73,6 +73,7 @@ module.exports = function (server) {
             exerciseTimeHours: req.body.exerciseTimeHours,
             excerciseNotes: req.body.excerciseNotes,
             weight: req.body.weight,
+            petId: req.params.petId
         }).then((dbLog) => {
             res.status(204);
             return res.json(dbLog);
