@@ -1,5 +1,16 @@
-// // Initialize the Firebase app in the service worker script.
-// firebase.initializeApp(config);
+var config = {
+    apiKey: "AIzaSyDjkXALCW34tlzUum78_lpDSkytaTHHBnA",
+    authDomain: "pet-track-63483.firebaseapp.com",
+    databaseURL: "https://pet-track-63483.firebaseio.com",
+    projectId: "pet-track-63483",
+    storageBucket: "pet-track-63483.appspot.com",
+    messagingSenderId: "697781297758"
+};
+
+importScripts("https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js");
+
+firebase.initializeApp(config);
 
 const getIdToken = () => {
     return new Promise((resolve, reject) => {
@@ -28,17 +39,14 @@ const getOriginFromUrl = (url) => {
 self.addEventListener('fetch', (event) => {
     const requestProcessor = (idToken) => {
         let req = event.request;
-        // For same origin https requests, append idToken to header.
         if (self.location.origin == getOriginFromUrl(event.request.url) &&
             (self.location.protocol == 'https:' ||
                 self.location.hostname == 'localhost') &&
             idToken) {
-            // Clone headers as request headers are immutable.
             const headers = new Headers();
             for (let entry of req.headers.entries()) {
                 headers.append(entry[0], entry[1]);
             }
-            // Add ID token to header.
             headers.append('Authorization', 'Bearer ' + idToken);
             try {
                 req = new Request(req.url, {
@@ -56,6 +64,7 @@ self.addEventListener('fetch', (event) => {
             } catch (e) {
             }
         }
+
         return fetch(req);
     };
 

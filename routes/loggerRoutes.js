@@ -74,10 +74,10 @@ module.exports = function (server) {
             excerciseNotes: req.body.excerciseNotes,
             weight: req.body.weight,
         }).then((dbLog) => {
+            res.status(204);
             return res.json(dbLog);
         });
 
-        res.status(204).end();
         console.log("Food was ADDED");
     });
 

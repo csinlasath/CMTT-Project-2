@@ -19,6 +19,8 @@ admin.initializeApp({
   databaseURL: "https://pet-track-63483.firebaseio.com"
 });
 
+
+
 const getIdToken = (req) => {
   const authorizationHeader = req.headers.authorization || "";
   const components = authorizationHeader.split(" ");
@@ -30,7 +32,7 @@ const checkIfSignedIn = (url) => {
     if (req.url == url) {
       const idToken = getIdToken(req);
       admin.auth().verifyIdToken(idToken).then((decodedClaims) => {
-        res.redirect("/dashboard");
+        res.redirect("/pets");
       }).catch(err => {
         next();
       });
@@ -58,14 +60,28 @@ const checkIfSignedIn = (url) => {
 //   }
 // }
 
-  // server.get("/pets", isAuthenticated, (req, res) => {
-  //   app.render(req, res);
-  // });
-  // server.get("/p/:id", (req, res) => {
-  //   const actualPage = "/post";
-  //   const queryParams = { title: req.params.id };
-  //   app.render(req, res, actualPage, queryParams);
-  // });
+// server.get("/pets", isAuthenticated, (req, res) => {
+//   app.render(req, res);
+// });
+// server.get("/p/:id", (req, res) => {
+//   const actualPage = "/post";
+//   const queryParams = { title: req.params.id };
+//   app.render(req, res, actualPage, queryParams);
+// });
+
+// server.post("/api/token/verify", (req, res) => {
+//   const idToken = req.body.fbToken
+
+//   console.log("Got the token");
+//   admin.auth().verifyIdToken(idToken)
+//     .then(function (decodedToken) {
+//       var uid = decodedToken.uid;
+//       console.log(`FireBase UID: ${uid}`);
+//     }).catch(function (error) {
+//       if (error) throw error;
+//     });
+//     return console.log("Recieved Token");
+// });
 
 const express = require("express");
 const next = require("next");
@@ -92,6 +108,7 @@ app.prepare().then(() => {
   require("./routes/loggerRoutes")(server);
   require("./routes/appointmentRoutes")(server);
   require("./routes/recordRoutes")(server);
+  // require("./routes/htmlRoutes")(server);
 
   server.get("*", (req, res) => {
     return handle(req, res);

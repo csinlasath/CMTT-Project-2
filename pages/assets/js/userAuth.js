@@ -7,20 +7,30 @@ $(document).ready(() => {
         storageBucket: "pet-track-63483.appspot.com",
         messagingSenderId: "697781297758"
     };
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
 
     if ("serviceWorker" in navigator) {
-        // navigator.serviceWorker.register("/service-worker.js", {scope:"/"});
-        console.log("Supported")
-        navigator.serviceWorker.register("/static/service-worker.js").then((reg) => {
+        navigator.serviceWorker.register("../../service-worker.js", {scope: "/"}).then((reg) => {
             console.log("Registered Service Worker");
         }).catch(err => {
             console.error(`Service Worker Error: ${err}`);
         });
     }
+    var isSignedIn;
+    var hasRedirected = "false";
 
-    var isUserSignedIn = false;
-    var isRedirected = false;
+    // if(hasRedirected === localStorage.getItem("false")) {
+    //     hasRedirected = "true";
+    //     window.location.assign
+    // }
+
+
+    // if (firebase.auth().currentUser && hasRedirected === "false") {
+
+    // }
+
     var accountEmail;
     var accountName;
     var accountPhone;
@@ -34,7 +44,28 @@ $(document).ready(() => {
         }).catch(err => {
             console.error(err);
         }).then(() => {
-            window.location.href = "/pets";
+            var providerId = firebase.auth().currentUser.providerData[0].providerId;
+            var googleFirstName = firebase.auth().currentUser.providerData[0].displayName.split(" ")[0];
+            var googleLastName = firebase.auth().currentUser.providerData[0].displayName.split(" ")[1];
+            var googleEmail = firebase.auth().currentUser.providerData[0].email;
+            var googlePhone = firebase.auth().currentUser.providerData[0].phoneNumber;
+            var googlePhoto = firebase.auth().currentUser.providerData[0].photoURL;
+
+            $.ajax({
+                type: "POST",
+                url: "/api/users/add",
+                data: {
+                    provider: providerId,
+                    firstName: googleFirstName,
+                    lastName: googleLastName,
+                    email: googleEmail,
+                    phoneNumber: googlePhone,
+                    photoURL: googlePhoto,
+                    firebaseUID: firebase.auth().currentUser.uid
+                }
+            }).then((res) => {
+                window.location.assign("/pets");
+            });
         });
     };
 
@@ -46,7 +77,28 @@ $(document).ready(() => {
         }).catch(err => {
             console.error(err);
         }).then(() => {
-            window.location.href = "/pets";
+            var providerId = firebase.auth().currentUser.providerData[0].providerId;
+            var facebookFirstName = firebase.auth().currentUser.providerData[0].displayName.split(" ")[0];
+            var facebookLastName = firebase.auth().currentUser.providerData[0].displayName.split(" ")[1];
+            var facebookEmail = firebase.auth().currentUser.providerData[0].email;
+            var facebookPhone = firebase.auth().currentUser.providerData[0].phoneNumber;
+            var facebookPhoto = firebase.auth().currentUser.providerData[0].photoURL;
+
+            $.ajax({
+                type: "POST",
+                url: "/api/users/add",
+                data: {
+                    provider: providerId,
+                    firstName: facebookFirstName,
+                    lastName: facebookLastName,
+                    email: facebookEmail,
+                    phoneNumber: facebookPhone,
+                    photoURL: facebookPhoto,
+                    firebaseUID: firebase.auth().currentUser.uid
+                }
+            }).then((res) => {
+                window.location.assign ("/pets");
+            });
         });
     };
 
@@ -58,7 +110,28 @@ $(document).ready(() => {
         }).catch(err => {
             console.error(err);
         }).then(() => {
-            window.location.href = "/pets";
+            var providerId = firebase.auth().currentUser.providerData[0].providerId;
+            var twitterFirstName = firebase.auth().currentUser.providerData[0].displayName.split(" ")[0];
+            var twitterLastName = firebase.auth().currentUser.providerData[0].displayName.split(" ")[1];
+            var twitterEmail = firebase.auth().currentUser.providerData[0].email;
+            var twitterPhone = firebase.auth().currentUser.providerData[0].phoneNumber;
+            var twitterPhoto = firebase.auth().currentUser.providerData[0].photoURL;
+
+            $.ajax({
+                type: "POST",
+                url: "/api/users/add",
+                data: {
+                    provider: providerId,
+                    firstName: twitterFirstName,
+                    lastName: twitterLastName,
+                    email: twitterEmail,
+                    phoneNumber: twitterPhone,
+                    photoURL: twitterPhoto,
+                    firebaseUID: firebase.auth().currentUser.uid
+                }
+            }).then((res) => {
+                window.location.assign("/pets");
+            });
         });
     };
 
@@ -85,9 +158,24 @@ $(document).ready(() => {
             localStorage.setItem("firebase_displayName", firebaseDisplayName);
             localStorage.setItem("firebase_phoneNumber", firebasePhoneNumber);
             localStorage.setItem("firebase_photoURL", firebasePhotoURL);
+
+            // firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/api/token/verify",
+            //         data: {
+            //             fbToken: idToken
+            //         }
+            //     }).then((res) => {
+            //         console.log("Sent Token")
+            //     });
+            //     console.log(`Firebase ID Token: ${idToken}`);
+            //     console.log("Sent Token to Server");
+            //   }).catch(function(error) {
+            //     if (error) throw error;
+            //   });
         }
         else {
-            localStorage.clear()
             console.error("not logged in");
         }
     });
@@ -129,13 +217,24 @@ $(document).ready(() => {
     //Sign Up Buttons
     $(document).on("click", "#sign-up-button", (event) => {
         event.preventDefault();
-        const email = $("#email-login-field").val().toString().toLowerCase().trim();
-        const password = $("#password-login-field").val().toString().trim();
+        const email = $("#email-signup-field").val().toString().toLowerCase().trim();
+        const password = $("#password-signup-field").val().toString().trim();
 
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(event => {
             console.log(event.message);
         }).then(() => {
-            window.location.href = "/pets";
+            $.ajax({
+                type: "POST",
+                url: "/api/users/add",
+                data: {
+                    provider: firebase.auth().currentUser.providerData[0].providerId,
+                    email: firebase.auth().currentUser.email,
+                    firebaseUID: firebase.auth().currentUser.uid
+                }
+            }).then((res) => {
+                window.location.assign("/pets");
+            });
+
         });
     });
 
@@ -177,7 +276,7 @@ $(document).ready(() => {
     });
 
     //Account Update Info Buttons
-    $(document).on("click", "#change-first-name", () => {
+    $(document).on("click", "#account-name-update-btn", () => {
         //Show Current
         //Show Input Field
         //Send info to firebase Auto
@@ -194,7 +293,7 @@ $(document).ready(() => {
         });
     });
 
-    $(document).on("click", "#change-last-name", () => {
+    $(document).on("click", "#account-name-update-btn", () => {
         //Show Current
         //Show Input Field
         //Send info to firebase Auto

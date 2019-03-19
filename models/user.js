@@ -1,12 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
+    provider: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
+      allowNull: true,
+    },
+
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    photoURL: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
 
     firebaseUID: {

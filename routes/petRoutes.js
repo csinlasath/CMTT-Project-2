@@ -54,10 +54,10 @@ module.exports = function (server) {
             imageId: req.body.imageId,
 
         }).then((dbPets) => {
+            res.status(204);
             return res.json(dbPets);
         });
 
-        res.status(204).end();
         console.log("Pet was ADDED");
     });
 
