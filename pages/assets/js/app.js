@@ -1,25 +1,14 @@
-// var pullfiles = function(){ 
-//     // love the query selector
-//     var fileInput = document.querySelector("#myfiles");
-//     var files = fileInput.files;
-//     // cache files.length 
-//     var fl = files.length;
-//     var i = 0;
+$(document).ready(() => {
+    $(document).on("click", "#pet-form-submit", (event) => {
+        event.preventDefault();
 
-//     while ( i < fl) {
-//         // localize file var in the loop
-//         var file = files[i];
-//         i++;
-//     }    
-// }
+        const petName = $("#add-pet-name").val().toString().trim();
+        const petBirth = $("#add-pet-birth").val().toString().trim();
+        const petType = $("#add-pet-name").val().toString().trim();
+        const petBreed = $("#add-pet-name").val().toString().trim();
+        const petGender = $("#add-pet-name").val().toString().trim();
+        
+    });
 
-// if (pullfiles === null) {
-//     document.querySelector("#myfiles").onchange=pullfiles;
-// }
-
-    
-// $("#pet-form-submit").on("click", () => {
-//     var petName = $("#pet-name").val().trim();
-//     console.log(petName);
-// });
+});
 

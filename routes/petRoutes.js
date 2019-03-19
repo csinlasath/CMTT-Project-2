@@ -43,7 +43,7 @@ module.exports = function (server) {
         console.log("Sent Back Pet Data");
     });
 
-    server.post("/api/pets/add", (req, res) => {
+    server.post("/api/pets/add/:userId", (req, res) => {
         console.log(req.body);
         db.pet.create({
             petName: req.body.petName,
@@ -52,7 +52,7 @@ module.exports = function (server) {
             gender: req.body.gender,
             dob: req.body.dob,
             imageId: req.body.imageId,
-
+            userId: req.params.userId
         }).then((dbPets) => {
             res.status(204);
             return res.json(dbPets);

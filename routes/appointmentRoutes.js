@@ -41,10 +41,11 @@ module.exports = function (server) {
         console.log("Sent Back Appointment Data");
     });
 
-    server.post("/api/appointments/add", (req, res) => {
+    server.post("/api/appointments/add/:petId", (req, res) => {
         console.log(req.body);
         db.appointment.create({
-            date: req.body.date
+            date: req.body.date,
+            userId: req.params.petId
         }).then((dbAppointment) => {
             return res.json(dbAppointment);
         });
