@@ -47,8 +47,8 @@ class CardContainer extends React.Component {
         return {query};
     };
     componentDidMount() {
-        fetch("api/pets/all")
-        // fetch("/api/pets/" + this.props.query.userId + "/all")
+        fetch("api/pets/all") //testing with no user, all pets
+        // fetch("/api/pets/" + this.props.query.userId + "/all") //with user in database
             .then(res => res.json())
             .then(
                 (result) => {
