@@ -12,7 +12,7 @@ const AddPetForm = (props) => (
             </div>
             <div className="form-group">
                 <label htmlFor="add-pet-birth" className="text-success">Pet Date of Birth</label>
-                <input type="text" className="form-control" id="add-pet-birth" placeholder="2018-05-04"></input>
+                <input type="text" className="form-control" id="add-pet-birth" placeholder="2004-05-25"></input>
             </div>
             <div className="form-group">
                 <label htmlFor="add-pet-type" className="text-success">Type of Pet</label>
@@ -20,7 +20,7 @@ const AddPetForm = (props) => (
             </div>
             <div className="form-group">
                 <label htmlFor="add-pet-breed" className="text-success">Pet Breed</label>
-                <input type="text" className="form-control" id="add-pet-breed" placeholder="Golden Retriever"></input>
+                <input type="text" className="form-control" id="add-pet-breed" placeholder="Labrador Retriever"></input>
             </div>
             <div className="form-group">
                 <label htmlFor="add-pet-gender" className="text-success">Pet Gender</label>
@@ -36,7 +36,9 @@ const AddPetForm = (props) => (
                 #add-pet-form {
                     margin-top: 25px;
                 }
-
+                ::placeholder {
+                    opacity: 0.3;
+                }
                 .add-pet-submit {
                     margin-top: 25px;
                     width: 100%;
