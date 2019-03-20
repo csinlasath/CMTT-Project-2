@@ -12,13 +12,17 @@ class Card extends React.Component {
     onClickCard(event) {
         this.props.onClickHandler(event.target);
     }
+    getPetIdToStorage(event) {
+        localStorage.setItem("dbCurrentPetId", this.props.id);
+        localStorage.setItem("dbCurrentPetName", this.props.name);
+    }
     render() {
         return (
             <div key={this.props.id} data-id={this.props.id} className="jsx-3607384524 container2">
                 <div className="jsx-3607384524 card text-center">
                     <h1 className="jsx-3607384524">{this.props.name}</h1>
                     <Link href={`/petprofile?id=${this.props.id}`}>
-                        <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image}></img>
+                        <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image} onClick={this.getPetIdToStorage.bind(this)}></img>
                     </Link>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
@@ -38,6 +42,7 @@ class CardContainer extends React.Component {
         super(props);
         this.clickEvent = this.clickEvent.bind(this);
         this.state = {
+            dbUserId: null,
             error: null,
             isLoaded: false,
             pets: []
@@ -47,27 +52,43 @@ class CardContainer extends React.Component {
         return {query};
     };
     componentDidMount() {
-        fetch("api/pets/all") //testing with no user, all pets
-        // fetch("/api/pets/" + this.props.query.userId + "/all") //with user in database
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        pets: result
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
 
-            )
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log(user);
+                fetch("/api/users/firebase/" + user.uid).then(res => res.json()).then((data) => {
+                    this.setState({
+                        dbUserId: data.id.toString()
+                    });
+                    console.log(this.state.dbUserId);
+                    console.log(typeof this.state.dbUserId);
+                    const fetchURL = `/api/pets/${this.state.dbUserId}/all`;
+                    console.log(fetchURL);
+                    fetch(fetchURL)
+                        .then(res => res.json())
+                        .then(
+                            (result) => {
+                                console.log(result);
+                                this.setState({
+                                    isLoaded: true,
+                                    pets: result
+                                });
+                            },
+                            (error) => {
+                                this.setState({
+                                    isLoaded: true,
+                                    error
+                                });
+                            }
+            
+                        )
+                });
+                
+            }
+            else {
+                console.log("Not Signed In");
+            }
+        });
     }
     clickEvent(target) {
         console.log(target.dataset.id);

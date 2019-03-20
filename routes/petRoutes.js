@@ -35,7 +35,7 @@ module.exports = function (server) {
             where: {
                 userId: req.params.userId
             },
-            include: [db.pet]
+            include: [db.user]
         }).then((dbPets) => {
             return res.json(dbPets);
         });
