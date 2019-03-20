@@ -19,7 +19,7 @@ const HeaderAuthentication = () => (
             <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
             <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
             {/* App Logic */}
-            <script src="/assets/js/userAuth.js"></script>
+            <script src="/assets/js/userAuth.js" defer></script>
             <script src="/assets/js/app.js" defer></script>
         </Head>
     </div>

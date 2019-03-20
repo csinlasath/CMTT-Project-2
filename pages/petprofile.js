@@ -129,51 +129,51 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <Link href={`/trackfood?id=${pet.id}`}>
+                    <Link href={`/logfood?id=${pet.id}`}>
                         <div className="card btn text-center">
                             <i className="card-img-top fas fa-utensils"></i>
                             <div className="card-body">
-                                <h5 className="card-title text-success">Track Food</h5>
+                                <h5 className="card-title text-success">Log Food</h5>
                             </div>
                         </div>
                     </Link>
-                    <Link href={`/trackwater?id=${pet.id}`}>
+                    <Link href={`/logwater?id=${pet.id}`}>
                         <div className="card btn text-center">
                             <i className="card-img-top fas fa-glass-whiskey"></i>
                             <div className="card-body">
-                                <h5 className="card-title text-success">Track Water</h5>
+                                <h5 className="card-title text-success">Log Water</h5>
                             </div>
                         </div>
                     </Link>
-                    <Link href={`/trackmedicine?id=${pet.id}`}>
+                    <Link href={`/logmedicine?id=${pet.id}`}>
                         <div className="card btn text-center">
                             <i className="card-img-top fas fa-pills"></i>
                             <div className="card-body">
-                                <h5 className="card-title text-success">Track Medicine</h5>
+                                <h5 className="card-title text-success">Log Medicine</h5>
                             </div>
                         </div>
                     </Link>
-                    <Link href={`/trackweight?id=${pet.id}`}>
+                    <Link href={`/logweight?id=${pet.id}`}>
                         <div className="card btn text-center">
                             <i className="card-img-top fas fa-weight"></i>
                             <div className="card-body">
-                                <h5 className="card-title text-success">Track Weight</h5>
+                                <h5 className="card-title text-success">Log Weight</h5>
                             </div>
                         </div>
                     </Link>
-                    <Link href={`/trackexercise?id=${pet.id}`}>
+                    <Link href={`/logexercise?id=${pet.id}`}>
                         <div className="card btn text-center">
                             <i className="card-img-top fas fa-running"></i>
                             <div className="card-body">
-                                <h5 className="card-title text-success">Track Excercise</h5>
+                                <h5 className="card-title text-success">Log Excercise</h5>
                             </div>
                         </div>
                     </Link>
-                    <Link href={`/trackpotty?id=${pet.id}`}>
+                    <Link href={`/logpotty?id=${pet.id}`}>
                         <div className="card btn text-center">
                             <i className="card-img-top fas fa-poop"></i>
                             <div className="card-body">
-                                <h5 className="card-title text-success">Track Potty</h5>
+                                <h5 className="card-title text-success">Log Potty</h5>
                             </div>
                         </div>
                     </Link>
