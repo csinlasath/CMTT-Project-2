@@ -1,10 +1,10 @@
-import Head from '../../components/Head';
+import HeadAuthentication from '../../components/HeadAuthentication';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const Layout = (props) => (
   <div>
-    <Head />
+    <HeadAuthentication />
     <Navbar />
     {props.children}
     <Footer />

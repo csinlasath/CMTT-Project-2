@@ -1,14 +1,14 @@
-import Head from '../../components/Head';
+import HeadAuthentication from '../../components/HeadAuthentication';
 import NavbarAuthentication from '../../components/NavbarAuthentication';
 import Footer from '../../components/Footer';
 
-const Layout = (props) => (
+const AuthenticationLayout = (props) => (
   <div>
-    <Head />
+    <HeadAuthentication />
     <NavbarAuthentication signOnButton="Sign Up" link="/signup" />
     {props.children}
     <Footer />
   </div>
 );
 
-export default Layout;
+export default AuthenticationLayout;

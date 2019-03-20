@@ -5,7 +5,7 @@ import MealTypes from '../components/constants/MealTypes';
 
 export default () => (
     <SignedInLayout>
-        <TrackCard title="Track Food Intake">
+        <TrackCard title="Log Weight Intake">
             <i className="card-img-top fas fa-weight text-success"></i>
             <div className="form-group">
                 <label htmlFor="weight-activity-field">How much do they weigh?</label>
@@ -14,18 +14,18 @@ export default () => (
                         <input type="number" className="form-control" id="weight-activity-field"></input>
                     </div>
                     <div className="col-md-3">
-                        <select type="number" className="form-control" id="food-measurement">
+                        <select type="number" className="form-control" id="weight-measurement">
                             <option>-</option>
-                            {MeasurementsWeight.map((value) => <option key={"food-measure-" + value} data-value={value}>{value}</option>)}
+                            {MeasurementsWeight.map((value) => <option key={"weight-measure-" + value} data-value={value}>{value}</option>)}
                         </select>
                     </div>
                 </div>
             </div>
             <div className="form-group">
-                <label htmlFor="food-notes">Notes for Activity:</label>
-                <textarea className="form-control" rows="8" id="food-notes"></textarea>
+                <label htmlFor="weight-notes">Notes for Activity:</label>
+                <textarea className="form-control" rows="8" id="weight-notes"></textarea>
             </div>
-            <button type="submit" className="btn btn-success" id="food-submit">Submit</button>
+            <button type="submit" className="btn btn-success" id="weight-submit">Submit</button>
             <style jsx> {`
                   .card-header {
                       height: 50px;

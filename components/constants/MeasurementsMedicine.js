@@ -1,7 +1,7 @@
 const MeasurementsMedicine = [
     "-",
-    "pills",
-    "tablets",
+    "pill(s)",
+    "tablet(s)",
     "ml(s)",
     "fl oz(s)",
     "cup(s)"
