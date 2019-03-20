@@ -4,20 +4,27 @@ import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 
 const defaultImage = ["/static/images/bacchus.jpg"];
+
 class Card extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    onClickCard(event) {
+        this.props.onClickHandler(event.target);
+    }
     render() {
         return (
-            <div key={this.props.id} className="jsx-3607384524 container2">
+            <div key={this.props.id} data-id={this.props.id} className="jsx-3607384524 container2">
                 <div className="jsx-3607384524 card text-center">
                     <h1 className="jsx-3607384524">{this.props.name}</h1>
                     <Link href={`/petprofile?id=${this.props.id}`}>
-                    <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image}></img>
+                        <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image}></img>
                     </Link>
                     <br className="jsx-3607384524"></br>
                     <div className="jsx-3607384524 buttons">
-                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success quick-feed-btn">Quick Feed</button>
+                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={this.onClickCard.bind(this)}>Quick Feed</button>
                         <Link href={`/log?id=${this.props.id}`}>
-                        <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success log-data-btn">Log Data</button>
+                            <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
                         </Link>
                     </div>
                 </div>
@@ -29,6 +36,7 @@ class Card extends React.Component {
 class CardContainer extends React.Component {
     constructor(props) {
         super(props);
+        this.clickEvent = this.clickEvent.bind(this);
         this.state = {
             error: null,
             isLoaded: false,
@@ -57,6 +65,20 @@ class CardContainer extends React.Component {
 
             )
     }
+    clickEvent(target) {
+        console.log(target.dataset.id);
+        fetch("api/log/add/" + target.dataset.id,
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({ logType: 0, foodNotes: "Quick Meal" })
+            })
+            .then(function (res) { console.log(res) })
+            .catch(function (res) { console.log(res) })
+    }
     render() {
         const { error, isLoaded, pets } = this.state;
         if (error) {
@@ -67,7 +89,7 @@ class CardContainer extends React.Component {
             console.log(pets);
             var elements = [];
             for (var i = 0; i < pets.length; i++) {
-                elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={defaultImage[0]} id={pets[i].id} />);
+                elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={defaultImage[0]} id={pets[i].id} onClickHandler={this.clickEvent} />);
             };
         };
         return (
@@ -87,15 +109,15 @@ class CardContainer extends React.Component {
 };
 
 export default () => (
-<SignedInLayout>
-    <CardBackground>
-        <h1>My Pets</h1>
-        <hr></hr>
-        <div className="container">
-            <CardContainer />
-        </div>
-    </CardBackground>
-    <style jsx> {`
+    <SignedInLayout>
+        <CardBackground>
+            <h1>My Pets</h1>
+            <hr></hr>
+            <div className="container">
+                <CardContainer />
+            </div>
+        </CardBackground>
+        <style jsx> {`
                 .addPet {
                     padding-top: 100px;
                 }
@@ -162,5 +184,6 @@ export default () => (
                 }
 
         `}</style>
-</SignedInLayout>
+    </SignedInLayout>
 );
+

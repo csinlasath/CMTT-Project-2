@@ -1,72 +1,185 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
+import { withRouter } from 'next/router';
 
-console.log(chosenPet, chosenImg);
-export default () => (
-    <SignedInLayout>
-        <br></br>
-        <div className="top row">
-            <div className="pic col-md-4">
-                <img src={chosenImg}></img>
-                <button className="appt btn btn-success">Set Next Appointment</button>
-            </div>
-            <div className="info col-md-4">
-                <h1>{chosenPet.petName}</h1>
-                <h5>DOB: {chosenPet.dob}</h5>
-                <h5>Weight: {chosenPet.weight} lbs.</h5>
-                <h5>Vet: Dr. {chosenPet.vetFirstName} {chosenPet.vetLastName}</h5>
-                <h5>Phone: {chosenPet.vetPhone}</h5>
-                <h5>Next Appt: {chosenPet.nextVet}</h5>
-                <h5>Last Fed: {chosenPet.lastFed}</h5>
-            </div>
-            <div className="buttons col-md-4">
-                <button className="btn btn-success">Check Food & Water Log</button>
-                <button className="btn btn-success">Check Exercise Log</button>
-                <button className="btn btn-success">Check Weight Log</button>
-                <button className="btn btn-success">Check Medicine Log</button>
-                <button className="btn btn-success">Check Potty Log</button>
-            </div>
-        </div>
-        <div className="row">
-            <a href="/trackfood" className="card btn text-center">
-                <i className="card-img-top fas fa-utensils"></i>
-                <div className="card-body">
-                    <h5 className="card-title text-success">Track Food</h5>
+class Profile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            pet: [],
+            vet: [],
+            log: [],
+            appt: [],
+        };
+    }
+    static getInitialProps({query}) {
+        return {query};
+    };
+    componentDidMount() {
+        // withRouter(props => (
+        //     console.log(props.router.query.title)
+        // ));
+        console.log(this.props.query.id)
+        fetch("/api/pets/pet-id/"+this.props.query.id) //:petId
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        pet: result
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+
+            )
+        fetch("api/records/pet-id/" + this.props.query.id) //:petId
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        vet: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+        fetch("api/log/" + this.props.query.id + "/all") //:petId
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        log: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+        fetch("/api/appointments/pet-id/"+this.props.query.id) //:petId
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        appt: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    render() {
+        const { error, isLoaded, pet, vet, log, appt } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            console.log(pet);
+        };
+        return (
+            <SignedInLayout>
+                <br></br>
+                <div className="top row">
+                    <div className="pic col-md-4">
+                        <img src="/static/images/bacchus.jpg"></img>
+                    </div>
+                    <div className="info col-md-4">
+                        <h1>{pet.petName}</h1>
+                        <h5>DOB: {pet.dob}</h5>
+                        <h5>Weight: {vet.weight} lbs.</h5>
+                        <h5>Vet: Dr. {vet.vetFirstName} {vet.vetLastName}</h5>
+                        <h5>Phone: {vet.vetPhone}</h5>
+                        <h5>Next Appt: {appt.nextVet}</h5>
+                        <h5>Last Fed: {log.lastFed}</h5>
+                    </div>
+                    <div className="buttons col-md-4">
+                        <Link href={`/petdetails?id=${pet.id}`}>
+                            <button className="btn btn-success">Pet Details</button>
+                        </Link>
+                        <Link href={`/dashboard?id=${pet.id}`}>
+                            <button className="btn btn-success">View Logs</button>
+                        </Link>
+                        <Link href={`/appointments?id=${pet.id}`}>
+                            <button className="btn btn-success">Set Next Appointment</button>
+                        </Link>
+                    </div>
                 </div>
-            </a>
-            <a href="/trackwater" className="card btn text-center">
-                <i className="card-img-top fas fa-glass-whiskey"></i>
-                <div className="card-body">
-                    <h5 className="card-title text-success">Track Water</h5>
+                <div className="row">
+                    <Link href={`/trackfood?id=${pet.id}`}>
+                        <div className="card btn text-center">
+                            <i className="card-img-top fas fa-utensils"></i>
+                            <div className="card-body">
+                                <h5 className="card-title text-success">Track Food</h5>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link href={`/trackwater?id=${pet.id}`}>
+                        <div className="card btn text-center">
+                            <i className="card-img-top fas fa-glass-whiskey"></i>
+                            <div className="card-body">
+                                <h5 className="card-title text-success">Track Water</h5>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link href={`/trackmedicine?id=${pet.id}`}>
+                        <div className="card btn text-center">
+                            <i className="card-img-top fas fa-pills"></i>
+                            <div className="card-body">
+                                <h5 className="card-title text-success">Track Medicine</h5>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link href={`/trackweight?id=${pet.id}`}>
+                        <div className="card btn text-center">
+                            <i className="card-img-top fas fa-weight"></i>
+                            <div className="card-body">
+                                <h5 className="card-title text-success">Track Weight</h5>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link href={`/trackexercise?id=${pet.id}`}>
+                        <div className="card btn text-center">
+                            <i className="card-img-top fas fa-running"></i>
+                            <div className="card-body">
+                                <h5 className="card-title text-success">Track Excercise</h5>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link href={`/trackpotty?id=${pet.id}`}>
+                        <div className="card btn text-center">
+                            <i className="card-img-top fas fa-poop"></i>
+                            <div className="card-body">
+                                <h5 className="card-title text-success">Track Potty</h5>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
-            </a>
-            <a href="/trackmedicine" className="card btn text-center">
-                <i className="card-img-top fas fa-pills"></i>
-                <div className="card-body">
-                    <h5 className="card-title text-success">Track Medicine</h5>
-                </div>
-            </a>
-            <a href="/trackweight" className="card btn text-center">
-                <i className="card-img-top fas fa-weight"></i>
-                <div className="card-body">
-                    <h5 className="card-title text-success">Track Weight</h5>
-                </div>
-            </a>
-            <a href="/trackexercise" className="card btn text-center">
-                <i className="card-img-top fas fa-running"></i>
-                <div className="card-body">
-                    <h5 className="card-title text-success">Track Excercise</h5>
-                </div>
-            </a>
-            <a href="/trackpotty" className="card btn text-center">
-                <i className="card-img-top fas fa-poop"></i>
-                <div className="card-body">
-                    <h5 className="card-title text-success">Track Potty</h5>
-                </div>
-            </a>
-        </div>
-        <style jsx> {`
+                <style jsx> {`
                 .appt {
                     max-width: 280px;
                     margin: auto;
@@ -134,5 +247,11 @@ export default () => (
                     padding: 30px;
                 }
         `}</style>
-    </SignedInLayout>
-);
+            </SignedInLayout>
+        )
+    }
+};
+
+export default Profile
+
+
