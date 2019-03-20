@@ -33,7 +33,7 @@ module.exports = function (server) {
     server.get("/api/log/:petId/all", (req, res) => {
         db.logger.findAll({
             where: {
-                userId: req.params.userId
+                petId: req.params.userId
             },
             include: [db.pet]
         }).then((dbLog) => {
