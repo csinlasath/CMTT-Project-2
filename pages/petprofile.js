@@ -15,15 +15,12 @@ class Profile extends React.Component {
             appt: [],
         };
     }
-    static getInitialProps({query}) {
-        return {query};
+    static getInitialProps({ query }) {
+        return { query };
     };
     componentDidMount() {
-        // withRouter(props => (
-        //     console.log(props.router.query.title)
-        // ));
         console.log(this.props.query.id)
-        fetch("/api/pets/pet-id/"+this.props.query.id) //:petId
+        fetch("/api/pets/pet-id/" + this.props.query.id) //:petId
             .then(res => res.json())
             .then(
                 (result) => {
@@ -40,57 +37,59 @@ class Profile extends React.Component {
                         isLoaded: true,
                         error
                     });
-                }
+                },
+                fetch("api/records/pet-id/" + this.props.query.id) //:petId
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            this.setState({
+                                isLoaded: true,
+                                vet: result
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                        },
+                        fetch("api/log/" + this.props.query.id + "/all") //:petId
+                            .then(res => res.json())
+                            .then(
+                                (result) => {
+                                    this.setState({
+                                        isLoaded: true,
+                                        log: result
+                                    });
+                                },
+                                (error) => {
+                                    this.setState({
+                                        isLoaded: true,
+                                        error
+                                    });
+                                },
+                                fetch("/api/appointments/pet-id/" + this.props.query.id) //:petId
+                                    .then(res => res.json())
+                                    .then(
+                                        (result) => {
+                                            this.setState({
+                                                isLoaded: true,
+                                                appt: result
+                                            });
+                                        },
+                                        (error) => {
+                                            this.setState({
+                                                isLoaded: true,
+                                                error
+                                            });
+                                        }
+                                    )
+                            )
+                    )
+            )
 
-            )
-        fetch("api/records/pet-id/" + this.props.query.id) //:petId
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        vet: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-        fetch("api/log/" + this.props.query.id + "/all") //:petId
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        log: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-        fetch("/api/appointments/pet-id/"+this.props.query.id) //:petId
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        appt: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+
+
     }
     render() {
         const { error, isLoaded, pet, vet, log, appt } = this.state;

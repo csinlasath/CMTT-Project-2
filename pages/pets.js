@@ -43,8 +43,12 @@ class CardContainer extends React.Component {
             pets: []
         };
     }
+    static getInitialProps({query}) {
+        return {query};
+    };
     componentDidMount() {
         fetch("api/pets/all")
+        // fetch("/api/pets/" + this.props.query.userId + "/all")
             .then(res => res.json())
             .then(
                 (result) => {
