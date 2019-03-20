@@ -16,7 +16,7 @@ const NoteButtons = (props) => (
                 <button id="user-shortcut-button" type="button" className="btn btn-success" data-toggle="modal" data-target="#noteModal">{props.noteTitle}</button>
             </div>
         </div>
-        <div className="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="modal-note-title" aria-hidden="true">
+        <div className="modal fade" id="noteModal" tabIndex="-1" role="dialog" aria-labelledby="modal-note-title" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header text-success">
