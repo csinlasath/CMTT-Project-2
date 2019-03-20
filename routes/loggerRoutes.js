@@ -33,14 +33,14 @@ module.exports = function (server) {
     server.get("/api/log/:petId/all", (req, res) => {
         db.logger.findAll({
             where: {
-                petId: req.params.userId
+                petId: req.params.petId
             },
             include: [db.pet]
         }).then((dbLog) => {
             return res.json(dbLog);
         });
 
-        console.log("Sent Back Food Data");
+        console.log("Sent Back Log Data");
     });
 
     server.post("/api/log/add/:petId", (req, res) => {

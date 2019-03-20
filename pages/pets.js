@@ -52,6 +52,7 @@ class CardContainer extends React.Component {
         return {query};
     };
     componentDidMount() {
+
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log(user);
