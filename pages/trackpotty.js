@@ -102,12 +102,10 @@ class Potty extends React.Component {
         } else if (!isLoaded) {
             return <SignedInLayout><CardBackground><div>Loading...</div></CardBackground></SignedInLayout>;
         } else {
-            // console.log(pottys);
-            // console.log(moment().local(pottys[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a"));
             var elements = [];
             for (var i = 0; i < pottys.length; i++) {
                 if (pottys[i].logType === 5) {
-                    elements.push(<Date key={"date-number-" + i} date={moment().local(pottys[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a")} targetId={"#modal" + pottys[i].id} />);
+                    elements.push(<Date key={"date-number-" + i} date={moment.utc(pottys[i].createdAt.split(".")[0]).local().format("MM/DD/YYYY hh:mm a")} targetId={"#modal" + pottys[i].id} />);
                     elements.push(<PottyModal key={"modal-number-" + i} urine={pottys[i].urine} urineColor={pottys[i].urineMeasure} stool={pottys[i].stool} stoolColor={pottys[i].stoolColor} stoolNotes={pottys[i].stoolNotes} id={"modal" + pottys[i].id} />);
                 };
             };

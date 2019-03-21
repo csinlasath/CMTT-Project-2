@@ -60,6 +60,27 @@ $(document).ready(() => {
         });
     });
 
+    //Add Appointment
+    $(document).on("click", "#appt-form-submit", (event) => {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+
+        const date = $("#add-appt-date").val().toString().trim();
+        const time = $("#add-appt-time").val().toString().trim();
+
+        $.ajax({
+            type: "POST",
+            url: "/api/appointments/add/" + localStorage.getItem("dbCurrentPetId"),
+            data: {
+                date: date,
+                time: time,
+                petId: localStorage.getItem("dbCurrentPetId")
+            }
+        }).then((res) => {
+            window.location.assign("/pets");
+        });
+    });
+
     //Log Food
     $(document).on("click", "#food-submit", (event) => {
         event.stopImmediatePropagation();

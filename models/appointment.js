@@ -1,7 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const appointment = sequelize.define("appointment", {
-    type: DataTypes.STRING,
-    date: DataTypes.DATE
+    date: {
+      type: DataTypes.STRING,
+      date: DataTypes.STRING
+    },
+    time: {
+      type: DataTypes.STRING,
+      time: DataTypes.STRING
+    }
   });
 
   appointment.associate = models => {
