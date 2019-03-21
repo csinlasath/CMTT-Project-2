@@ -9,7 +9,6 @@ module.exports = function (server) {
         }
         db.pet.findAll({
             where: query,
-            include: [db.user]
         }).then((dbPets) => {
             return res.json(dbPets);
         });
@@ -35,7 +34,6 @@ module.exports = function (server) {
             where: {
                 userId: req.params.userId
             },
-            include: [db.user]
         }).then((dbPets) => {
             return res.json(dbPets);
         });

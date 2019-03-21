@@ -9,7 +9,7 @@ import MaxMinutes from '../components/constants/MaxMinutes'
 
 export default () => (
     <SignedInLayout>
-        <TrackCard title="Track Potty Breaks">
+        <TrackCard title="Log Potty Breaks">
         <i className="card-img-top fas fa-poop text-success"></i>
             <div className="form-group">
                 <label htmlFor="urine-activity-select">Urination?</label>

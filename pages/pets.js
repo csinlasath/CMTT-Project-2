@@ -55,20 +55,15 @@ class CardContainer extends React.Component {
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log(user);
                 fetch("/api/users/firebase/" + user.uid).then(res => res.json()).then((data) => {
                     this.setState({
                         dbUserId: data.id.toString()
                     });
-                    console.log(this.state.dbUserId);
-                    console.log(typeof this.state.dbUserId);
                     const fetchURL = `/api/pets/${this.state.dbUserId}/all`;
-                    console.log(fetchURL);
                     fetch(fetchURL)
                         .then(res => res.json())
                         .then(
                             (result) => {
-                                console.log(result);
                                 this.setState({
                                     isLoaded: true,
                                     pets: result
@@ -85,13 +80,9 @@ class CardContainer extends React.Component {
                 });
                 
             }
-            else {
-                console.log("Not Signed In");
-            }
         });
     }
     clickEvent(target) {
-        console.log(target.dataset.id);
         fetch("api/log/add/" + target.dataset.id,
             {
                 headers: {
@@ -111,10 +102,12 @@ class CardContainer extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            console.log(pets);
             var elements = [];
             for (var i = 0; i < pets.length; i++) {
-                elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={defaultImage[0]} id={pets[i].id} onClickHandler={this.clickEvent} />);
+                if (pets[i].imageId === null) {
+                    pets[i].imageId = "/static/images/enzo.jpg";
+                } 
+                elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={pets[i].imageId} id={pets[i].id} onClickHandler={this.clickEvent} />);
             };
         };
         return (

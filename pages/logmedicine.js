@@ -5,7 +5,7 @@ import MealTypes from '../components/constants/MealTypes';
 
 export default () => (
     <SignedInLayout>
-        <TrackCard title="Track Medicine Intake">
+        <TrackCard title="Log Medicine Intake">
             <i className="card-img-top fas fa-pills text-success"></i>
             <div className="form-group">
                 <label htmlFor="medicine-activity-field">What did they take?</label>

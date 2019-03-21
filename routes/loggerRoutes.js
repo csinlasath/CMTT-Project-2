@@ -9,7 +9,6 @@ module.exports = function (server) {
         }
         db.logger.findAll({
             where: query,
-            include: [db.pet]
         }).then((dbLog) => {
             return res.json(dbLog);
         });
@@ -35,7 +34,6 @@ module.exports = function (server) {
             where: {
                 petId: req.params.petId
             },
-            include: [db.pet]
         }).then((dbLog) => {
             return res.json(dbLog);
         });

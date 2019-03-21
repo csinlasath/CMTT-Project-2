@@ -6,7 +6,7 @@ import MaxMinutes from '../components/constants/MaxMinutes'
 
 export default () => (
     <SignedInLayout>
-        <TrackCard title="Track Excercise">
+        <TrackCard title="Log Excercise">
         <i className="card-img-top fas fa-running text-success"></i>
             <div className="form-group">
                 <label htmlFor="exercise-activity-select">Activity</label>
