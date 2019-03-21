@@ -21,7 +21,7 @@ const Date = (props) => (
 
 const PottyModal = (props) => (
     <div id="modal-potty-div">
-        <div className="modal fade" role="dialog" id={props.id} tabindex="-1" aria-labelledby="modal-potty-note" aria-hidden="true">
+        <div className="modal fade" role="dialog" id={props.id} tabIndex="-1" aria-labelledby="modal-potty-note" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header text-success">
@@ -62,15 +62,23 @@ class Potty extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
+            petId: null,
             pottys: []
         };
     }
     static getInitialProps({query}) {
         return {query};
     };
+    getCurrentPetId() {
+        this.setState({
+            petId: window.location.href.split("=")[1]
+        });
+        console.log(this.state.petId);
+    }
     componentDidMount() {
-        // fetch("/api/log/" + this.props.query.id +"/all") // :petId 
-        fetch("/api/log/1/all")
+        this.getCurrentPetId();
+        fetch("/api/log/" + window.location.href.split("=")[1] + "/all") // :petId 
+        // fetch("/api/log/12/all")
             .then(res => res.json())
             .then(
                 (result) => {

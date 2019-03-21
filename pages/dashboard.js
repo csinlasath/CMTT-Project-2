@@ -10,19 +10,14 @@ class Dashboard extends React.Component {
         this.state = {
             petId: null
         };
-        // this.getCurrentPetId();
     }
     getCurrentPetId() {
-        console.log(window.location.href.split("=")[1]);
         this.setState({
             petId: window.location.href.split("=")[1]
         });
-        console.log(this.state.petId);
     }
-
     componentDidMount() {
         this.getCurrentPetId();
-        
     }
     render() {
         return (
@@ -30,7 +25,7 @@ class Dashboard extends React.Component {
                 <CardBackground>
                     <h2 className="card-title text-success">My Pet Dashboard</h2>
                     <CardDeck>
-                        <Link href={`/trackfood?id=1`}>
+                        <Link href={`/trackfood?id=${this.state.petId}`}>
                             <a href="/trackfood" className="card btn text-center">
                                 <i className="card-img-top fas fa-utensils"></i>
                                 <div className="card-body">
@@ -38,38 +33,48 @@ class Dashboard extends React.Component {
                                 </div>
                             </a>
                         </Link>
-                        <a href="/trackwater" className="card btn text-center">
-                            <i className="card-img-top fas fa-glass-whiskey"></i>
-                            <div className="card-body">
-                                <h5 className="card-title text-success">Water Logs</h5>
-                            </div>
-                        </a>
-                        <a href="/trackmedicine" className="card btn text-center">
-                            <i className="card-img-top fas fa-pills"></i>
-                            <div className="card-body">
-                                <h5 className="card-title text-success">Medicine Logs</h5>
-                            </div>
-                        </a>
+                        <Link href={`/trackwater?id=${this.state.petId}`}>
+                            <a href="/trackwater" className="card btn text-center">
+                                <i className="card-img-top fas fa-glass-whiskey"></i>
+                                <div className="card-body">
+                                    <h5 className="card-title text-success">Water Logs</h5>
+                                </div>
+                            </a>
+                        </Link>
+                        <Link href={`/trackmedicine?id=${this.state.petId}`}>
+                            <a href="/trackmedicine" className="card btn text-center">
+                                <i className="card-img-top fas fa-pills"></i>
+                                <div className="card-body">
+                                    <h5 className="card-title text-success">Medicine Logs</h5>
+                                </div>
+                            </a>
+                        </Link>
                     </CardDeck>
                     <CardDeck>
-                        <a href="/trackweight" className="card btn text-center">
-                            <i className="card-img-top fas fa-weight"></i>
-                            <div className="card-body">
-                                <h5 className="card-title text-success">Weight Logs</h5>
-                            </div>
-                        </a>
-                        <a href="/trackexercise" className="card btn text-center">
-                            <i className="card-img-top fas fa-running"></i>
-                            <div className="card-body">
-                                <h5 className="card-title text-success">Excercise Logs</h5>
-                            </div>
-                        </a>
-                        <a href="/trackpotty" className="card btn text-center">
-                            <i className="card-img-top fas fa-poop"></i>
-                            <div className="card-body">
-                                <h5 className="card-title text-success">Potty Logs</h5>
-                            </div>
-                        </a>
+                        <Link href={`/trackweight?id=${this.state.petId}`}>
+                            <a href="/trackweight" className="card btn text-center">
+                                <i className="card-img-top fas fa-weight"></i>
+                                <div className="card-body">
+                                    <h5 className="card-title text-success">Weight Logs</h5>
+                                </div>
+                            </a>
+                        </Link>
+                        <Link href={`/trackexercise?id=${this.state.petId}`}>
+                            <a href="/trackexercise" className="card btn text-center">
+                                <i className="card-img-top fas fa-running"></i>
+                                <div className="card-body">
+                                    <h5 className="card-title text-success">Excercise Logs</h5>
+                                </div>
+                            </a>
+                        </Link>
+                        <Link href={`/trackpotty?id=${this.state.petId}`}>
+                            <a href="/trackpotty" className="card btn text-center">
+                                <i className="card-img-top fas fa-poop"></i>
+                                <div className="card-body">
+                                    <h5 className="card-title text-success">Potty Logs</h5>
+                                </div>
+                            </a>
+                        </Link>
                     </CardDeck>
                     <CardDeck>
                         <a href="#" className="card btn text-center">
@@ -116,7 +121,7 @@ class Dashboard extends React.Component {
     
             `}</style>
             </SignedInLayout >
-            
+
         )
     }
 }
