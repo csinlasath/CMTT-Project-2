@@ -16,20 +16,64 @@ class Card extends React.Component {
     }
     render() {
         return (
-            <div key={this.props.id} data-id={this.props.id} className="jsx-3607384524 container2">
-                <div className="jsx-3607384524 card text-center">
-                    <h1 className="jsx-3607384524">{this.props.name}</h1>
+            <div key={this.props.id} data-id={this.props.id} className="container2">
+                <div className="card text-center">
+                    <h1>{this.props.name}</h1>
                     <Link href={`/petprofile?id=${this.props.id}`}>
-                        <img data-id={this.props.id} className="jsx-3607384524" src={this.props.image} onClick={this.getPetIdToStorage.bind(this)}></img>
+                        <img data-id={this.props.id} src={this.props.image} onClick={this.getPetIdToStorage.bind(this)}></img>
                     </Link>
-                    <br className="jsx-3607384524"></br>
-                    <div className="jsx-3607384524 buttons">
-                        <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={this.onClickCard.bind(this)}>Quick Feed</button>
+                    <br></br>
+                    <div className="buttons">
+                        <button id="feed" data-id={this.props.id} className="btn btn-success" onClick={this.onClickCard.bind(this)}>Quick Feed</button>
                         <Link href={`/log?id=${this.props.id}`}>
-                            <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={this.getPetIdToStorage.bind(this)}>Log Data</button>
+                            <button id="log" data-id={this.props.id} className="btn btn-success" onClick={this.getPetIdToStorage.bind(this)}>Log Data</button>
                         </Link>
                     </div>
                 </div>
+                <style jsx> {`
+                button {
+                    margin: 10px;
+
+                }
+                button:hover {
+                    cursor: pointer;
+                }
+                .buttons {
+                    padding-bottom: 35px;
+                }
+                img {
+                    height: 180px;
+                    width: 180px;
+                    margin: auto;
+                    border: 2px solid green;
+                    border-radius: 100%;
+                    object-fit: cover;
+                }
+                img:hover {
+                    cursor: pointer;
+                    transition: 1s;
+                    transform: scale(1.1);
+                }
+                .container2 {
+                    margin: auto auto 30px auto;
+                }
+                .card {
+                    max-width: 325px;
+                    height: 325px;
+                    min-width 230px;
+                    width: 70vw;
+                    margin: auto;
+                    border: 1px solid green;
+                }
+                h1 {
+                    text-align: center;
+                    color: black;
+                }
+                h2 {
+                    margin-top: 25px;
+                    text-align: center;
+                }
+        `}</style>
             </div>
         );
     };
@@ -46,8 +90,8 @@ class CardContainer extends React.Component {
             pets: []
         };
     }
-    static getInitialProps({query}) {
-        return {query};
+    static getInitialProps({ query }) {
+        return { query };
     };
     componentDidMount() {
 
@@ -73,10 +117,10 @@ class CardContainer extends React.Component {
                                     error: error
                                 });
                             }
-            
+
                         )
                 });
-                
+
             }
         });
     }
@@ -109,64 +153,19 @@ class CardContainer extends React.Component {
             };
         }
         return (
-            <div id="pets" className="jsx-3607384524 card-deck">
+            <div id="pets" className="card-deck">
                 {elements}
-                <div className="jsx-3607384524 container2">
-                    <a href="/addpet" className="jsx-3607384524 card btn text-center addPet">
-                        <i className="jsx-3607384524 card-img-top fas fa-plus dashboard-available"></i>
-                        <div className="jsx-3607384524 card-body">
-                            <h5 className="jsx-3607384524 card-title dashboard-available">Add Pet</h5>
+                <div className="container2">
+                    <a href="/addpet" className="card btn text-center addPet">
+                        <i className="card-img-top fas fa-plus dashboard-available"></i>
+                        <div className="card-body">
+                            <h5 className="card-title dashboard-available">Add Pet</h5>
                         </div>
                     </a>
                 </div>
-            </div>
-        );
-    };
-};
-
-export default () => (
-    <SignedInLayout>
-        <CardBackground>
-            <h1>My Pets</h1>
-            <hr></hr>
-            <div className="container">
-                <CardContainer />
-            </div>
-        </CardBackground>
-        <style jsx> {`
+                <style jsx> {`
                 .addPet {
                     padding-top: 100px;
-                }
-                .container {
-                    margin-top: 50px;
-                    margin-bottom: 0;
-                    
-                }
-                button {
-                    margin: 10px;
-
-                }
-                button:hover {
-                    cursor: pointer;
-                }
-                .buttons {
-                    padding-bottom: 35px;
-                }
-                hr {
-                    cborder: 1px solid green;
-                }
-                img {
-                    max-height: 180px;
-                    max-width: 180px;
-                    margin: auto;
-                    border: 2px solid green;
-                    border-radius: 100%;
-
-                }
-                img:hover {
-                    cursor: pointer;
-                    transition: 1s;
-                    transform: scale(1.1);
                 }
                 .container2 {
                     margin: auto auto 30px auto;
@@ -178,9 +177,6 @@ export default () => (
                     width: 70vw;
                     margin: auto;
                     border: 1px solid green;
-                }
-                .card-body {
-                    
                 }
                 .dashboard-available {
                     color: gray;
@@ -200,6 +196,31 @@ export default () => (
                 }
 
         `}</style>
+            </div>
+        );
+    };
+};
+
+export default () => (
+    <SignedInLayout>
+        <CardBackground>
+            <h1>My Pets</h1>
+            <hr></hr>
+            <div className="container">
+                <CardContainer />
+            </div>
+        </CardBackground>
+        <style jsx> {`
+                .container {
+                    margin-top: 50px;
+                    margin-bottom: 0;
+                }
+                h1 {
+                    text-align: center;
+                    color: black;
+                }
+            `}
+        </style>
     </SignedInLayout>
 );
 
