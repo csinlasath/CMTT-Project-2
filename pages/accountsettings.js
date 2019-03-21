@@ -55,7 +55,7 @@ class AccountSettings extends React.Component {
 
             }
             else {
-                console.log("Not Signed In");
+                window.location.replace("/login");
             }
         });
     };
