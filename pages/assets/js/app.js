@@ -77,7 +77,7 @@ $(document).ready(() => {
                 petId: localStorage.getItem("dbCurrentPetId")
             }
         }).then((res) => {
-            window.location.assign("/pets");
+            window.location.assign("/petprofile?id=" + localStorage.getItem("dbCurrentPetID"));
         });
     });
 
