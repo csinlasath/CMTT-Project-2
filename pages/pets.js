@@ -33,7 +33,6 @@ class Card extends React.Component {
                 <style jsx> {`
                 button {
                     margin: 10px;
-
                 }
                 button:hover {
                     cursor: pointer;
@@ -48,7 +47,14 @@ class Card extends React.Component {
                     border: 2px solid green;
                     border-radius: 100%;
                     object-fit: cover;
+                    object-position: 50% 50%;
+                    -webkit-animation:spin 0.01s linear;
+                    -moz-animation:spin 0.01s linear;
+                    animation:spin 0.01s linear;
                 }
+                @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+                @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+                @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
                 img:hover {
                     cursor: pointer;
                     transition: 1s;
