@@ -43,12 +43,13 @@ module.exports = function (server) {
         console.log(req.body);
         db.appointment.create({
             date: req.body.date,
-            userId: req.params.petId
+            time: req.body.time,
+            petId: req.params.petId
         }).then((dbAppointment) => {
             return res.json(dbAppointment);
         });
 
-        res.status(204).end();
+        res.status(204);
         console.log("Appointment was ADDED");
     });
 

@@ -48,12 +48,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   record.associate = models => {
-    record.hasMany(models.appointment, {
-      onDelete: "cascade",
-      foreignKey: { 
-        allowNull: false 
-      }
-    });
+    // record.hasMany(models.appointment, {
+    //   onDelete: "cascade",
+    //   foreignKey: { 
+    //     allowNull: false 
+    //   }
+    // });
     record.belongsTo(models.pet, {
       foreignKey: {
         allowNull: false
