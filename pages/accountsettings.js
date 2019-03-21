@@ -231,7 +231,7 @@ export default () => (
         <CardBackground>
             <h2 id="accountSettings" className="card-title text-success">Account Settings</h2>
             <hr></hr>
-            <AccountSettings firstName={userFirstName} lastName={userLastName} emailAddress={userEmailAddress} phoneNumber={userPhoneNumber} />
+            <AccountSettings />
         </CardBackground>
         <style jsx>{`
            #accountSettings {

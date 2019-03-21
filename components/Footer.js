@@ -1,6 +1,6 @@
 const Footer = () => (
     <footer>
-        <nav className="navbar navbar-light bg-success">
+        <nav className="navbar fixed-bottom navbar-light bg-success">
             <div className="container">
                     <ul>
                         <li>
@@ -51,8 +51,7 @@ const Footer = () => (
                   }
 
                   nav {
-                      margin-top: 175px;
-                      bottom: 0;
+                      margin-top: 300px;
                       width: 100%;
                   }
               `}</style>
