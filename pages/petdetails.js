@@ -20,7 +20,8 @@ class AccountSettings extends React.Component {
             dbFirstName: null,
             dbLastName: null,
             firebase_email: null,
-            firebase_phoneNumber: null
+            firebase_phoneNumber: null,
+            dbCurrentPetBreed: null,
         };
     };
     componentDidMount() {
@@ -66,6 +67,7 @@ class AccountSettings extends React.Component {
                                 dbPetRx: data[0].prescriptions,
                                 dbPetSymptoms: data[0].symptoms,
                                 dbRecordNotes: data[0].notes,
+                                dbCurrentPetBreed: localStorage.getItem("dbCurrentPetBreed")
                             });
                         }
                         if (this.state.dbVetFirstName === null) {
@@ -141,7 +143,7 @@ class AccountSettings extends React.Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <p>{this.state.dbPetCondition}</p>
+                                        <p>{this.state.dbCurrentPetBreed}</p>
                                         <hr></hr>
                                     </div>
                                 </div>
