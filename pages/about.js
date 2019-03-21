@@ -17,18 +17,38 @@ export default () => (
                     <div className="carousel-innner">
                         <div className="carousel-item active">
                             <img className="d-block w-100" src="/static/images/bacchus/bacchus-1.jpg" alt="First Slide"></img>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Bacchus</h5>
+                                <p>05/25/2004 - 03/09/19</p>
+                            </div>
                         </div>
                         <div className="carousel-item">
                             <img className="d-block w-100" src="/static/images/bacchus/bacchus-2.jpg" alt="Second Slide"></img>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Bacchus</h5>
+                                <p>05/25/2004 - 03/09/19</p>
+                            </div>
                         </div>
                         <div className="carousel-item">
                             <img className="d-block w-100" src="/static/images/bacchus/bacchus-3.jpg" alt="Third Slide"></img>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Bacchus</h5>
+                                <p>05/25/2004 - 03/09/19</p>
+                            </div>
                         </div>
                         <div className="carousel-item">
                             <img className="d-block w-100" src="/static/images/bacchus/bacchus-5.jpg" alt="Fourth Slide"></img>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Bacchus</h5>
+                                <p>05/25/2004 - 03/09/19</p>
+                            </div>
                         </div>
                         <div className="carousel-item">
                             <img className="d-block w-100" src="/static/images/bacchus/bacchus-6.jpg" alt="Fifth Slide"></img>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Bacchus</h5>
+                                <p>05/25/2004 - 03/09/19</p>
+                            </div>
                         </div>
                     </div>
                     <a className="carousel-control-prev" href="#bacchus-carousel" role="button" data-slide="prev">
