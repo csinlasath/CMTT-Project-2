@@ -92,7 +92,7 @@ class Weight extends React.Component {
             for (var i = weight.length - 1; i > -1; i--) {
                 if (weight[i].logType === 3) {
                 elements.push(<Date key={"date-number-" + i} date={moment.utc(weight[i].createdAt.split(".")[0]).local().format("MM/DD/YYYY hh:mm a")} targetId={"#modal"+weight[i].id} />);
-                elements.push(<WeightModal key={"modal-number-" + i} weight={weight[i].weight} note={weight[i].weightNotes} id={"modal"+weight[i].id} />);
+                elements.push(<WeightModal key={"modal-number-" + i} weight={weight[i].weight} weightNote={weight[i].weightNotes} id={"modal"+weight[i].id} />);
                 };
             };
         };

@@ -7,8 +7,17 @@ const SignedInLayout = (props) => (
   <div>
     <Head />
     <NavbarSignedIn />
-    {props.children}
+    <div className="footerPush">
+      {props.children}
+    </div>
     <Footer />
+    <style jsx> {`
+      .footerPush {
+        height: 100vh - 200px;
+      }
+      
+    `}
+    </style>
   </div>
 );
 
