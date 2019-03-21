@@ -1,5 +1,7 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
+var moment = require('moment');
+moment().format();
 
 const Date = (props) => (
     <div>
@@ -34,9 +36,11 @@ const PottyModal = (props) => (
                         </button>
                     </div>
                     <div className="modal-body">
-                        <p>{props.urine}</p>
-                        <p>{props.stool}</p>
-                        <p>{props.stoolColor}</p>
+                        <p><strong>Did They Pee? </strong> {props.urine}</p>
+                        <p><strong>What Color Was It? </strong> {props.urineColor}</p>
+                        <p><strong>Did They Poop? </strong> {props.stool}</p>
+                        <p><strong>What Type Was It? </strong> {props.stoolColor}</p>
+                        <p><strong>Notes: </strong> {props.stoolNotes}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
@@ -50,6 +54,9 @@ const PottyModal = (props) => (
                 }
                 h1 {
                     text-align: center;
+                }
+                p {
+                    color: green;
                 }
                 `}
         </style>
@@ -66,19 +73,12 @@ class Potty extends React.Component {
             pottys: []
         };
     }
-    static getInitialProps({query}) {
-        return {query};
+    static getInitialProps({ query }) {
+        return { query };
     };
-    getCurrentPetId() {
-        this.setState({
-            petId: window.location.href.split("=")[1]
-        });
-        console.log(this.state.petId);
-    }
     componentDidMount() {
-        this.getCurrentPetId();
-        fetch("/api/log/" + window.location.href.split("=")[1] + "/all") // :petId 
-        // fetch("/api/log/12/all")
+        fetch("/api/log/" + this.props.query.id + "/all") // :petId 
+            // fetch("/api/log/12/all") //test
             .then(res => res.json())
             .then(
                 (result) => {
@@ -107,11 +107,12 @@ class Potty extends React.Component {
             return <SignedInLayout><CardBackground><div>Loading...</div></CardBackground></SignedInLayout>;
         } else {
             console.log(pottys);
+            console.log(moment().local(pottys[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a"));
             var elements = [];
             for (var i = 0; i < pottys.length; i++) {
                 if (pottys[i].logType === 5) {
-                elements.push(<Date key={"date-number-" + i} date={pottys[i].createdAt} targetId={"#modal"+pottys[i].id} />);
-                elements.push(<PottyModal key={"modal-number-" + i} urine={pottys[i].urine} stool={pottys[i].stool} stoolColor={pottys[i].stoolColor} id={"modal"+pottys[i].id} />);
+                    elements.push(<Date key={"date-number-" + i} date={moment().local(pottys[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a")} targetId={"#modal" + pottys[i].id} />);
+                    elements.push(<PottyModal key={"modal-number-" + i} urine={pottys[i].urine} urineColor={pottys[i].urineMeasure} stool={pottys[i].stool} stoolColor={pottys[i].stoolColor} stoolNotes={pottys[i].stoolNotes} id={"modal" + pottys[i].id} />);
                 };
             };
         };
@@ -121,7 +122,7 @@ class Potty extends React.Component {
                     <div>
                         <h1>Latest Potty Breaks</h1>
                     </div>
-                    { elements }
+                    {elements}
                     {/* <Date date="3/17/2019 at 4:20" pottyModal="#pottyModal" /> */}
                     {/* <PottyModal pottyModal={"pottyModal"} pottyData1={"Test"} /> */}
                 </CardBackground>
