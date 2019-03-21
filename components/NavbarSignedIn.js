@@ -38,7 +38,7 @@ class SignedInNavbar extends React.Component {
                             </li>
                             <div className="dropdown-divider"></div>
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="/records">Records</a>
+                                <a className="nav-link text-white" href="/petdetails#pet-details-records">Records</a>
                             </li>
                             <div className="dropdown-divider"></div>
                             <li className="nav-item">

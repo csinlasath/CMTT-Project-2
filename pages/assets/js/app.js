@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    if (localStorage.getItem("dbCurrentPetId") === null) {
+    if (localStorage.getItem("dbCurrentPetId") === "null") {
         $("#signed-in-toggler").hide()
     }
     else {

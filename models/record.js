@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     vetPhone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
     weight: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
 

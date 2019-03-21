@@ -10,14 +10,21 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
 
-$(document).ready(() => {
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("../../service-worker.js", { scope: "/" }).then((reg) => {
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (var registration of registrations) {
+            registration.unregister();
+            console.log("Unregistered Service Workers");
+        }
+    }).then(() => {
+        navigator.serviceWorker.register("../../service-worker.js", { scope: "/login" }).then((reg) => {
         }).catch(err => {
             console.error(`Service Worker Error: ${err}`);
         });
-    }
+    });
+}
 
+$(document).ready(() => {
     const signInWithGoogle = () => {
         var googleAuthProvider = new firebase.auth.GoogleAuthProvider;
 
