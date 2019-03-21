@@ -1,63 +1,41 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
 
-const TrackExercise = (props) => (
-    <div id="track-exercise-div">
-        <h1 id="pet-exercise-title" className="card-title text-success">Your Pets Exercise</h1>
-            <div className="row">
-                <div className="col-md-3">
-                    <h5 className="text-success">Time of Exercise</h5>
-                </div>
-                <div className="col-md-3">
-                    <h5 className="text-success">Type of Exercise</h5>
-                </div>
-                <div className="col-md-3">
-                    <h5 className="text-success">Length of Exercise</h5>
-                </div>
-                <div className="col-md-3">
-                    <h5 className="text-success">Additional Notes</h5>
-                </div>
-            </div>
-        <div className="list-group-item list-group-item-action" type="button" data-toggle="modal" data-target="#exerciseModal">
-            <div className="row">
-                <div className="col-md-3">
-                    <div id="exercise-timeStamp" className=" text-success">{props.timeStamp}</div>
-                </div>
-                <div className="col-md-3">
-                    <div id="exercise-type" className="text-success">{props.exerciseType}</div>
-                </div>
-                <div className="col-md-3">
-                    <div id="exercise-length" className="text-success">{props.exerciseLength}</div>
-                </div>
-                <div className="col-md-3">
-                    <button id="exercise-notes" className="btn btn-success">Exercise Notes</button>
-                </div>
-            </div>
-        </div>
+var moment = require('moment');
+moment().format();
+
+const Date = (props) => (
+    <div>
+        <button id="exercise-notes" data-toggle="modal" data-target={props.targetId} className="exerciseDate btn btn-success text-center">{props.date}</button>
         <style jsx>{`
-                #pet-exercise-title{
-                    text-align: center;
-                }
-                `}</style>
+        button{
+            width: 100%
+        }
+        .exerciseDate {
+            margin-bottom: 7px;
+        }
+        `}</style>
     </div>
 );
 
 const ExerciseModal = (props) => (
     <div id="modal-exercise-div">
-        <div className="modal fade" role="dialog" id="exerciseModal" tabindex="-1" aria-labelledby="modal-exercise-note" aria-hidden="true">
+        <div className="modal fade" role="dialog" id={props.id} tabIndex="-1" aria-labelledby="modal-exercise-note" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header text-success">
-                        <h5 className="modal-title" id="modal-exercise-note">Exercise Note</h5>
+                        <h5 className="modal-title" id="modal-exercise-note">Exercise</h5>
                         <button type="button"
                             className="close"
                             data-dismiss="modal"
                             aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <span aria-hidden="true">&true;</span>
+                            </button>
                     </div>
                     <div className="modal-body">
-                        {props.exerciseNote}
+                        <p>{props.exerciseType}</p>
+                        <p>{props.exerciseLength}</p>
+                        <p>{props.exerciseNote}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
@@ -66,13 +44,72 @@ const ExerciseModal = (props) => (
             </div>
         </div>
     </div>
-)
-
-export default () => (
-    <SignedInLayout>
-        <CardBackground>
-            <TrackExercise timeStamp="Example of time stamp" exerciseType="Walk" exerciseLength="7hr 43min" />
-            <ExerciseModal exerciseNote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."  />
-        </CardBackground>
-    </SignedInLayout>
 );
+
+class Exercise extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            exercise: []
+        };
+    }
+    static getInitialProps({query}) {
+        return {query};
+    };
+    componentDidMount() {
+        // fetch("/api/log/" + this.props.query.id +"/all") // :petId 
+        fetch("/api/log/1/all")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        pottys: result
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+
+            )
+    }
+    render() {
+        const { error, isLoaded, exercise } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <SignedInLayout><CardBackground><div>Loading...</div></CardBackground></SignedInLayout>;
+        } else {
+            console.log(exercise);
+            var elements = [];
+            for (var i = 0; i < exercise.length; i++) {
+                if (exercise[i].logType === 4) {
+                elements.push(<Date key={"date-number-" + i} date={moment().local(exercise[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a")} />);
+                elements.push(<ExerciseModal key={"modal-number-" + i} type={exercise[i].exerciseType} length={exercise[i].exerciseLength} note={exercise[i].exerciseNote} id={"modal"+exercise[i].id} />);
+                };
+            };
+        };
+        return (
+            <SignedInLayout>
+                <CardBackground>
+                    <div>
+                        <h1 className="text-success text-center">Last Exercise</h1>
+                    </div>
+                    { elements }
+                    {/* <Date date="3/17/2019 at 4:20" pottyModal="#pottyModal" /> */}
+                    {/* <PottyModal pottyModal={"pottyModal"} pottyData1={"Test"} /> */}
+                </CardBackground>
+            </SignedInLayout>
+        )
+    }
+};
+
+export default Exercise;
