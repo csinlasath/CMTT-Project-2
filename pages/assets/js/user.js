@@ -35,10 +35,6 @@ $(document).ready(() => {
 
     firebase.auth().onAuthStateChanged(petAppUser => {
         if (petAppUser) {
-            console.log("logged in");
-            console.log(firebase.auth().currentUser);
-            isUserSignedIn = true;
-
             const firebaseUserId = firebase.auth().currentUser.uid;
             const firebaseEmail = firebase.auth().currentUser.email;
             const firebaseDisplayName = firebase.auth().currentUser.displayName;

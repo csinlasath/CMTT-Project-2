@@ -9,7 +9,6 @@ module.exports = function (server) {
         }
         db.appointment.findAll({
             where: query,
-            include: [db.Pet]
         }).then((dbAppointment) => {
             return res.json(dbAppointment);
         });
@@ -34,7 +33,6 @@ module.exports = function (server) {
             where: {
                 petId: req.params.petId
             },
-            include: [db.Pet]
         }).then((dbAppointment) => {
             return res.json(dbAppointment);
         });

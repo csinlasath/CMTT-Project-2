@@ -1,7 +1,6 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-import { withRouter } from 'next/router';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -10,6 +9,7 @@ class Profile extends React.Component {
             error: null,
             isLoaded: false,
             pet: [],
+            petImage: null,
             vet: [],
             log: [],
             appt: [],
@@ -29,9 +29,6 @@ class Profile extends React.Component {
                         pet: result
                     });
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
                     this.setState({
                         isLoaded: true,
@@ -87,12 +84,12 @@ class Profile extends React.Component {
                             )
                     )
             )
-
-
-
     }
     render() {
         const { error, isLoaded, pet, vet, log, appt } = this.state;
+        if (pet.imageId === null) {
+            pet.imageId = "/static/images/enzo.jpg";
+        }
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -105,7 +102,7 @@ class Profile extends React.Component {
                 <br></br>
                 <div className="top row">
                     <div className="pic col-md-4">
-                        <img src="/static/images/bacchus.jpg"></img>
+                        <img src={pet.imageId}></img>
                     </div>
                     <div className="info col-md-4">
                         <h1>{pet.petName}</h1>

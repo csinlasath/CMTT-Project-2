@@ -1,4 +1,9 @@
+var fetch = require('isomorphic-unfetch');
+
 require('dotenv').config();
+var devEnv = process.env.NODE_ENV !== 'production';
+var server = devEnv ? "http://localhost:3000" : "https://cmatt-project-2.herokuapp.com";
+
 var firebase = require('firebase');
 var config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -19,8 +24,6 @@ admin.initializeApp({
   databaseURL: "https://pet-track-63483.firebaseio.com"
 });
 
-
-
 const getIdToken = (req) => {
   const authorizationHeader = req.headers.authorization || "";
   const components = authorizationHeader.split(" ");
@@ -31,57 +34,24 @@ const checkIfSignedIn = (url) => {
   return (req, res, next) => {
     if (req.url == url) {
       const idToken = getIdToken(req);
-      admin.auth().verifyIdToken(idToken).then((decodedClaims) => {
+      admin.auth().verifyIdToken(idToken).then((decodedToken) => {
+        var currentFbUserId = decodedToken.uid;
+        var fetchURL = `${server}/api/users/firebase/${currentFbUserId}`;
+        var currentDBUserId;
+        var redirectURL;
+        fetch(fetchURL).then(res => res.json()).then((data) => {
+          currentDBUserId = data.id;
+          redirectURL = `${server}/pets?userId=${currentDBUserId}`;
+        });
         res.redirect("/pets");
-      }).catch(err => {
+      }).catch((err) => {
         next();
       });
-    }
-    else {
+    } else {
       next();
     }
-  }
+  };
 }
-
-// const isAuthenticated = (req, res, next) => {
-//   var user = firebase.auth().currentUser;
-//   console.log("User")
-//   console.log(user);
-//   if (user !== null) {
-//     req.user = user;
-//     console.log("Passed");
-//     console.log(req.user);
-//   next();
-//   }
-//   else {
-//     res.redirect("/login");
-//     console.log("Failed");
-//     console.log(req.body);
-//   }
-// }
-
-// server.get("/pets", isAuthenticated, (req, res) => {
-//   app.render(req, res);
-// });
-// server.get("/p/:id", (req, res) => {
-//   const actualPage = "/post";
-//   const queryParams = { title: req.params.id };
-//   app.render(req, res, actualPage, queryParams);
-// });
-
-// server.post("/api/token/verify", (req, res) => {
-//   const idToken = req.body.fbToken
-
-//   console.log("Got the token");
-//   admin.auth().verifyIdToken(idToken)
-//     .then(function (decodedToken) {
-//       var uid = decodedToken.uid;
-//       console.log(`FireBase UID: ${uid}`);
-//     }).catch(function (error) {
-//       if (error) throw error;
-//     });
-//     return console.log("Recieved Token");
-// });
 
 const express = require("express");
 const next = require("next");
@@ -108,7 +78,6 @@ app.prepare().then(() => {
   require("./routes/loggerRoutes")(server);
   require("./routes/appointmentRoutes")(server);
   require("./routes/recordRoutes")(server);
-  // require("./routes/htmlRoutes")(server);
 
   server.get("*", (req, res) => {
     return handle(req, res);
