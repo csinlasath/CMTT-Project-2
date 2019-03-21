@@ -34,8 +34,8 @@ const WeightModal = (props) => (
                             </button>
                     </div>
                     <div className="modal-body">
-                    <p className="text-success"><strong>Weight:</strong>{props.weight}</p>
-                    <p><strong>Additional Notes:</strong>{props.weightNote}</p>
+                    <p className="text-success"><strong>Weight:</strong>  {props.weight}</p>
+                    <p className="text-success"><strong>Additional Notes:</strong> {props.weightNote}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
@@ -59,8 +59,7 @@ class Weight extends React.Component {
         return {query};
     };
     componentDidMount() {
-        // fetch("/api/log/" + this.props.query.id +"/all") // :petId 
-        fetch("/api/log/1/all")
+        fetch("/api/log/" + this.props.query.id +"/all") // :petId 
             .then(res => res.json())
             .then(
                 (result) => {
@@ -90,10 +89,10 @@ class Weight extends React.Component {
         } else {
             console.log(weight);
             var elements = [];
-            for (var i = 0; i < weight.length; i++) {
+            for (var i = weight.length - 1; i > -1; i--) {
                 if (weight[i].logType === 3) {
                 elements.push(<Date key={"date-number-" + i} date={moment().local(weight[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a")} targetId={"#modal"+weight[i].id} />);
-                elements.push(<WeightModal key={"modal-number-" + i} weight={weight[i].weight} note={weight[i].weightNotes} id={"modal"+pottys[i].id} />);
+                elements.push(<WeightModal key={"modal-number-" + i} weight={weight[i].weight} note={weight[i].weightNotes} id={"modal"+weight[i].id} />);
                 };
             };
         };
@@ -104,8 +103,6 @@ class Weight extends React.Component {
                         <h1 className="text-success text-center">Last Weigh-In</h1>
                     </div>
                     { elements }
-                    {/* <Date date="3/17/2019 at 4:20" pottyModal="#pottyModal" /> */}
-                    {/* <PottyModal pottyModal={"pottyModal"} pottyData1={"Test"} /> */}
                 </CardBackground>
             </SignedInLayout>
         )

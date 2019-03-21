@@ -7,9 +7,6 @@ const Date = (props) => (
     <div>
         <button id="potty-notes" data-toggle="modal" data-target={props.targetId} className="pottyDate btn btn-success">{props.date}</button>
         <style jsx>{`
-                #pet-exercise-title{
-                    text-align: center;
-                }
                 button {
                     width: 100%;
                 }
@@ -40,7 +37,7 @@ const PottyModal = (props) => (
                         <p><strong>What Color Was It? </strong> {props.urineColor}</p>
                         <p><strong>Did They Poop? </strong> {props.stool}</p>
                         <p><strong>What Type Was It? </strong> {props.stoolColor}</p>
-                        <p><strong>Notes: </strong> {props.stoolNotes}</p>
+                        <p><strong>Additional Notes: </strong> {props.stoolNotes}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
@@ -69,7 +66,6 @@ class Potty extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            petId: null,
             pottys: []
         };
     }
@@ -106,8 +102,8 @@ class Potty extends React.Component {
         } else if (!isLoaded) {
             return <SignedInLayout><CardBackground><div>Loading...</div></CardBackground></SignedInLayout>;
         } else {
-            console.log(pottys);
-            console.log(moment().local(pottys[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a"));
+            // console.log(pottys);
+            // console.log(moment().local(pottys[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a"));
             var elements = [];
             for (var i = 0; i < pottys.length; i++) {
                 if (pottys[i].logType === 5) {
@@ -123,13 +119,8 @@ class Potty extends React.Component {
                         <h1>Latest Potty Breaks</h1>
                     </div>
                     {elements}
-                    {/* <Date date="3/17/2019 at 4:20" pottyModal="#pottyModal" /> */}
-                    {/* <PottyModal pottyModal={"pottyModal"} pottyData1={"Test"} /> */}
                 </CardBackground>
                 <style jsx>{`
-                #pet-exercise-title{
-                    text-align: center;
-                }
                 h1 {
                     text-align: center;
                 }

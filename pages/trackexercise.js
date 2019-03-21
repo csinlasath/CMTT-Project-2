@@ -1,20 +1,20 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import CardBackground from '../views/cardBackground';
-
 var moment = require('moment');
 moment().format();
 
 const Date = (props) => (
     <div>
-        <button id="exercise-notes" data-toggle="modal" data-target={props.targetId} className="exerciseDate btn btn-success text-center">{props.date}</button>
+        <button id="exercise-notes" data-toggle="modal" data-target={props.targetId} className="exerciseDate btn btn-success">{props.date}</button>
         <style jsx>{`
-        button{
-            width: 100%
-        }
-        .exerciseDate {
-            margin-bottom: 7px;
-        }
-        `}</style>
+                button {
+                    width: 100%;
+                }
+                .exerciseDate {
+                    margin-bottom: 7px;
+                }
+                `}
+        </style>
     </div>
 );
 
@@ -24,18 +24,18 @@ const ExerciseModal = (props) => (
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header text-success">
-                        <h5 className="modal-title" id="modal-exercise-note">Exercise</h5>
+                        <h5 className="modal-title" id="modal-exercise-note">Exercise Break</h5>
                         <button type="button"
                             className="close"
                             data-dismiss="modal"
                             aria-label="Close">
-                            <span aria-hidden="true">&true;</span>
-                            </button>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div className="modal-body">
-                        <p>{props.exerciseType}</p>
-                        <p>{props.exerciseLength}</p>
-                        <p>{props.exerciseNote}</p>
+                        <p><strong>What Did We Do? </strong> {props.exerciseType}</p>
+                        <p><strong>How Long Was The Exercise? </strong> {props.exerciseTimeHours} Hours {props.exerciseTimeMinutes} Minutes</p>
+                        <p><strong>Additional Notes: </strong> {props.exerciseNotes}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
@@ -43,6 +43,18 @@ const ExerciseModal = (props) => (
                 </div>
             </div>
         </div>
+        <style jsx>{`
+                #modal-exercise-note {
+                    text-align: center;
+                }
+                h1 {
+                    text-align: center;
+                }
+                p {
+                    color: green;
+                }
+                `}
+        </style>
     </div>
 );
 
@@ -55,18 +67,18 @@ class Exercise extends React.Component {
             exercise: []
         };
     }
-    static getInitialProps({query}) {
-        return {query};
+    static getInitialProps({ query }) {
+        return { query };
     };
     componentDidMount() {
-        // fetch("/api/log/" + this.props.query.id +"/all") // :petId 
-        fetch("/api/log/1/all")
+        fetch("/api/log/" + this.props.query.id + "/all") // :petId 
+            // fetch("/api/log/12/all") //test
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        pottys: result
+                        exercise: result
                     });
                 },
                 // Note: it's important to handle errors here
@@ -88,12 +100,11 @@ class Exercise extends React.Component {
         } else if (!isLoaded) {
             return <SignedInLayout><CardBackground><div>Loading...</div></CardBackground></SignedInLayout>;
         } else {
-            console.log(exercise);
             var elements = [];
-            for (var i = 0; i < exercise.length; i++) {
+            for (var i = exercise.length - 1; i > -1; i--) {
                 if (exercise[i].logType === 4) {
-                elements.push(<Date key={"date-number-" + i} date={moment().local(exercise[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a")} />);
-                elements.push(<ExerciseModal key={"modal-number-" + i} type={exercise[i].exerciseType} length={exercise[i].exerciseLength} note={exercise[i].exerciseNote} id={"modal"+exercise[i].id} />);
+                    elements.push(<Date key={"date-number-" + i} date={moment.utc(exercise[i].createdAt.split(".")[0]).local().format("MM/DD/YYYY hh:mm a")} targetId={"#modal" + exercise[i].id} />);
+                    elements.push(<ExerciseModal key={"modal-number-" + i} exerciseType={exercise[i].exerciseType} exerciseTimeHours={exercise[i].exerciseTimeHours} exerciseTimeMinutes={exercise[i].exerciseTimeMinutes} exerciseNotes={exercise[i].exerciseNotes} id={"modal" + exercise[i].id} />);
                 };
             };
         };
@@ -101,12 +112,16 @@ class Exercise extends React.Component {
             <SignedInLayout>
                 <CardBackground>
                     <div>
-                        <h1 className="text-success text-center">Last Exercise</h1>
+                        <h1>Latest Exercises</h1>
                     </div>
-                    { elements }
-                    {/* <Date date="3/17/2019 at 4:20" pottyModal="#pottyModal" /> */}
-                    {/* <PottyModal pottyModal={"pottyModal"} pottyData1={"Test"} /> */}
+                    {elements}
                 </CardBackground>
+                <style jsx>{`
+                h1 {
+                    text-align: center;
+                }
+                `}
+                </style>
             </SignedInLayout>
         )
     }
