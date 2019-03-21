@@ -55,7 +55,7 @@ class AccountSettings extends React.Component {
                             firebase_phoneNumber: "N/A"
                         });
                     }
-                    console.log("/api/records/pet-id/" + localStorage.getItem("dbCurrentPetId"));
+                    // console.log("/api/records/pet-id/" + localStorage.getItem("dbCurrentPetId"));
                     fetch("/api/records/pet-id/" + localStorage.getItem("dbCurrentPetId")).then(res => res.json()).then((data) => {
                         if (data.length !== 0) {
                             this.setState({
@@ -110,6 +110,19 @@ class AccountSettings extends React.Component {
                                 dbRecordNotes: "N/A"
                             });
                         }
+                        fetch("api/pets/pet-id/" + localStorage.getItem("dbCurrentPetId")).then(res => res.json()).then((data) => {
+                            console.log(data);
+                            this.setState({
+                                dbCurrentPetBreed: data.breed
+                            });
+                            if (this.state.dbCurrentPetBreed === null) {
+                                this.setState({
+                                    dbCurrentPetBreed: "N/A"
+                                })
+
+                            };
+                        });
+
                     });
                 });
 
@@ -168,8 +181,11 @@ class AccountSettings extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-12">
+                                    <div className="col-md-6">
                                         <label>Vet Phone Number</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <button id="vet" data-toggle="modal" data-target="vetModal" className="waterDate btn btn-success">Add/Change Vet</button>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -281,7 +297,46 @@ class AccountSettings extends React.Component {
         );
     };
 };
-
+const VetModal = (props) => (
+    <div id="modal-vet-div">
+        <div className="modal fade" role="dialog" id="vetModal" tabIndex="-1" aria-labelledby="modal-food-note" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header text-success">
+                        <h5 className="modal-title" id="modal-food-note">Food Break</h5>
+                        <button type="button"
+                            className="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <p><strong>What Did They Eat? </strong> {props.foodName}</p>
+                        <p><strong>What Meal Was It? </strong> {props.foodMeal}</p>
+                        <p><strong>How Much? </strong> {props.foodMeasure}</p>
+                        <p><strong>Additional Notes: </strong> {props.foodNotes}</p>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style jsx>{`
+                #modal-food-note {
+                    text-align: center;
+                }
+                h1 {
+                    text-align: center;
+                }
+                p {
+                    color: green;
+                }
+                `}
+        </style>
+    </div>
+);
 
 // export default AccountSettings;
 
@@ -291,6 +346,7 @@ export default () => (
             <h2 id="accountSettings" className="card-title text-success">Pet Details</h2>
             <hr></hr>
             <AccountSettings />
+            <VetModal />
         </CardBackground>
         <style jsx>{`
            #accountSettings {
