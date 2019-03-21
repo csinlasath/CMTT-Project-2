@@ -10,20 +10,16 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
 
-$(document).ready(() => {
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function (registrations) {
-            for (let registration of registrations) {
-                registration.unregister();
-                console.log("Unregistered Service Workers");
-            }
-        })
-    }
-    var accountEmail;
-    var accountName;
-    var accountPhone;
-    var accountPhoto;
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (var registration of registrations) {
+            registration.unregister();
+            console.log("Unregistered Service Workers");
+        }
+    });
+}
 
+$(document).ready(() => {
     const signOutApp = () => {
         firebase.auth().signOut().then(() => {
             console.log("User Signed Out.");

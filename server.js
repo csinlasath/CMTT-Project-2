@@ -66,12 +66,7 @@ app.prepare().then(() => {
   server.use(express.urlencoded({ extended: false }));
   server.use(express.json());
   server.use(express.static("pages"));
-  server.use(checkIfSignedIn("/"));
-
-  server.get("/service-worker", (req, res) => {
-    const filePath = join(__dirname, "static/service-worker.js");
-    app.serveStatic(req, res, filePath);
-  });
+  server.use(checkIfSignedIn("/login"));
 
   require("./routes/userRoutes")(server);
   require("./routes/petRoutes")(server);

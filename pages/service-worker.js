@@ -10,7 +10,9 @@ var config = {
 importScripts("https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js");
 
-firebase.initializeApp(config);
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+}
 
 const getIdToken = () => {
     return new Promise((resolve, reject) => {

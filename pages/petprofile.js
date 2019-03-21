@@ -33,6 +33,21 @@ class Profile extends React.Component {
                         isLoaded: true,
                         pet: result
                     });
+                    if (result.imageId === "") {
+                        this.setState({
+                            petImage: "/static/images/enzo.jpg"
+                        });
+                    }
+                    if (result.imageId === null) {
+                        this.setState({
+                            petImage: "/static/images/enzo.jpg"
+                        });
+                    }
+                    if ((result.imageId !== "") && (result.imageId !== null)) {
+                        this.setState({
+                            petImage: result.imageId
+                        });
+                    }
                 },
                 (error) => {
                     this.setState({
@@ -114,51 +129,52 @@ class Profile extends React.Component {
             )
     }
     render() {
-        const { error, isLoaded, pet, vet, log, appt, lastFed, latestWeight, nextApptTime, nextApptDate } = this.state;
-        if (pet.imageId === "") {
-            pet.imageId = "/static/images/enzo.jpg";
-        }
-        if (error) {
-            return (<div>Error: {error.message}</div>);
-        }
-        else if (!isLoaded) {
-            return (
-                <SignedInLayout>
-                    <div>Loading...</div>;
-                </SignedInLayout>)
-        }
-        else {
+        // if (this.state.pet.imageId === "") {
+        //     this.setState({
+        //         pet.imageId = "/static/images/enzo.jpg"
+        //     });
+        // }
+        // if (error) {
+        //     return (<div>Error: {error.message}</div>);
+        // }
+        // else if (!isLoaded) {
+        //     return (
+        //         <SignedInLayout>
+        //             <div>Loading...</div>;
+        //         </SignedInLayout>)
+        // }
+        // else {
             return (
                 <SignedInLayout>
                     <br></br>
                     <div className="top row">
                         <div className="pic col-md-4">
-                            <img src={pet.imageId}></img>
+                            <img src={this.state.petImage}></img>
                         </div>
                         <div className="info col-md-4">
-                            <h1>{pet.petName}</h1>
-                            <h5>DOB: {pet.dob}</h5>
-                            <h5>Weight: {latestWeight}</h5>
-                            <h5>Vet: Dr. {vet.vetFirstName} {vet.vetLastName}</h5>
-                            <h5>Phone: {vet.vetPhone}</h5>
-                            <h5>Next Appt:  {nextApptTime} {nextApptDate}</h5>
-                            <h5>Last Fed: {lastFed}</h5>
+                            <h1>{this.state.pet.petName}</h1>
+                            <h5>DOB: {this.state.pet.dob}</h5>
+                            <h5>Weight: {this.state.latestWeight}</h5>
+                            <h5>Vet: Dr. {this.state.vet.vetFirstName} {this.state.vet.vetLastName}</h5>
+                            <h5>Phone: {this.state.vet.vetPhone}</h5>
+                            <h5>Next Appt:  {this.state.nextApptTime} {this.state.nextApptDate}</h5>
+                            <h5>Last Fed: {this.state.lastFed}</h5>
                         </div>
                         <div className="buttons col-md-4">
-                            <Link href={`/petdetails?id=${pet.id}`}>
+                            <Link href={`/petdetails?id=${this.state.pet.id}`}>
                                 <button className="btn btn-success">Pet Details</button>
                             </Link>
-                            <Link href={`/dashboard?id=${pet.id}`}>
+                            <Link href={`/dashboard?id=${this.state.pet.id}`}>
                                 <button className="btn btn-success">View Logs</button>
                             </Link>
-                            <Link href={`/appointments?id=${pet.id}`}>
+                            <Link href={`/appointments?id=${this.state.pet.id}`}>
                                 <button className="btn btn-success">Set Next Appointment</button>
                             </Link>
                         </div>
                     </div>
                     <div className="container negative-wrapper">
                         <div className="row bottom">
-                            <Link href={`/logfood?id=${pet.id}`}>
+                            <Link href={`/logfood`}>
                                 <div className="card btn text-center">
                                     <i className="card-img-top fas fa-utensils"></i>
                                     <div className="card-body">
@@ -166,7 +182,7 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Link>
-                            <Link href={`/logwater?id=${pet.id}`}>
+                            <Link href={`/logwater?id=${this.state.pet.id}`}>
                                 <div className="card btn text-center">
                                     <i className="card-img-top fas fa-glass-whiskey"></i>
                                     <div className="card-body">
@@ -174,7 +190,7 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Link>
-                            <Link href={`/logmedicine?id=${pet.id}`}>
+                            <Link href={`/logmedicine?id=${this.state.pet.id}`}>
                                 <div className="card btn text-center">
                                     <i className="card-img-top fas fa-pills"></i>
                                     <div className="card-body">
@@ -182,7 +198,7 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Link>
-                            <Link href={`/logweight?id=${pet.id}`}>
+                            <Link href={`/logweight?id=${this.state.pet.id}`}>
                                 <div className="card btn text-center">
                                     <i className="card-img-top fas fa-weight"></i>
                                     <div className="card-body">
@@ -190,7 +206,7 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Link>
-                            <Link href={`/logexercise?id=${pet.id}`}>
+                            <Link href={`/logexercise?id=${this.state.pet.id}`}>
                                 <div className="card btn text-center">
                                     <i className="card-img-top fas fa-running"></i>
                                     <div className="card-body">
@@ -198,7 +214,7 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </Link>
-                            <Link href={`/logpotty?id=${pet.id}`}>
+                            <Link href={`/logpotty?id=${this.state.pet.id}`}>
                                 <div className="card btn text-center">
                                     <i className="card-img-top fas fa-poop"></i>
                                     <div className="card-body">
@@ -287,7 +303,7 @@ class Profile extends React.Component {
                 </SignedInLayout>
             );
         }
-    }
+    // }
 };
 
 export default Profile
