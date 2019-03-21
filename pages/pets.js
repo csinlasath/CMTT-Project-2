@@ -72,7 +72,7 @@ class CardContainer extends React.Component {
                             (error) => {
                                 this.setState({
                                     isLoaded: true,
-                                    error
+                                    error: error
                                 });
                             }
             
@@ -109,7 +109,7 @@ class CardContainer extends React.Component {
                 } 
                 elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={pets[i].imageId} id={pets[i].id} onClickHandler={this.clickEvent} />);
             };
-        };
+        }
         return (
             <div id="pets" className="jsx-3607384524 card-deck">
                 {elements}

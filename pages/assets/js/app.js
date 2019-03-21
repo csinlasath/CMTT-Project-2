@@ -1,4 +1,11 @@
 $(document).ready(() => {
+    if (localStorage.getItem("dbCurrentPetId") === null) {
+        $("#signed-in-toggler").hide()
+    }
+    else {
+        $("#signed-in-toggler").show();
+    }
+
     $(document).on("change", "#add-pet-picture-btn", (event) => {
         event.preventDefault();
         console.log("Changed Button");

@@ -165,7 +165,8 @@ $(document).ready(() => {
             localStorage.setItem("firebase_displayName", firebaseDisplayName);
             localStorage.setItem("firebase_phoneNumber", firebasePhoneNumber);
             localStorage.setItem("firebase_photoURL", firebasePhotoURL);
-            localStorage.setItem("dbCurrentPetId", 1);
+            localStorage.setItem("dbCurrentPetId", "null");
+            localStorage.setItem("dbCurrentPetName", "null");
 
             $.ajax({
                 type: "GET",
@@ -175,7 +176,9 @@ $(document).ready(() => {
                 localStorage.setItem("dbFirstName", res.firstName);
                 localStorage.setItem("dbLastName", res.lastName);
             });
-
+        }
+        else {
+            localStorage.clear();
         }
     });
 

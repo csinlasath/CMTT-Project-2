@@ -4,11 +4,6 @@ import CardBackground from '../views/cardBackground';
 import { server } from "../config/server-config"
 import fetch from 'isomorphic-unfetch';
 
-var userFirstName = "John"
-var userLastName = "Doe"
-var userEmailAddress = "johndoe@yahoo.com"
-var userPhoneNumber = "855-867-5309"
-
 class AccountSettings extends React.Component {
     constructor(props) {
         super(props);
