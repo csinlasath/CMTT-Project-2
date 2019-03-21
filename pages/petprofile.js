@@ -115,7 +115,7 @@ class Profile extends React.Component {
     }
     render() {
         const { error, isLoaded, pet, vet, log, appt, lastFed, latestWeight, nextApptTime, nextApptDate } = this.state;
-        if (pet.imageId === null) {
+        if (pet.imageId === "") {
             pet.imageId = "/static/images/enzo.jpg";
         }
         if (error) {

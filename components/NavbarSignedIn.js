@@ -7,12 +7,12 @@ class SignedInNavbar extends React.Component {
             dbCurrentPetId: null
         }
     };
-    getPetIdToStorage() {
-        var currentPet = localStorage.setItem("dbCurrentPetId", this.props.id);
-    }
-    componentDidMount(){
-        this.getPetIdToStorage();
-    }
+    // getPetIdToStorage() {
+    //     var currentPet = localStorage.setItem("dbCurrentPetId", this.props.id);
+    // }
+    // componentDidMount(){
+    //     this.getPetIdToStorage();
+    // }
     render() {
         return (
             <div>
