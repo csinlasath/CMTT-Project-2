@@ -1,6 +1,6 @@
 const Footer = () => (
     <footer>
-        <nav className="navbar fixed-bottom navbar-light bg-success">
+        <nav className="navbar navbar-light bg-success">
             <div className="container">
                     <ul>
                         <li>
