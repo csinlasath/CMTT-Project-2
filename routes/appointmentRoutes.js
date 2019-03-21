@@ -49,7 +49,7 @@ module.exports = function (server) {
             return res.json(dbAppointment);
         });
 
-        res.status(204).end();
+        res.status(204);
         console.log("Appointment was ADDED");
     });
 
