@@ -48,6 +48,7 @@ class Profile extends React.Component {
                             petImage: result.imageId
                         });
                     }
+                    localStorage.setItem("dbCurrentPetBreed", result.breed);
                 },
                 (error) => {
                     this.setState({
