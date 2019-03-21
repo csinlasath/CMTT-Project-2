@@ -1,4 +1,31 @@
 $(document).ready(() => {
+    $(document).on("change", "#add-pet-picture-btn", (event) => {
+        event.preventDefault();
+        console.log("Changed Button");
+        var file = event.target.files[0];
+        var storage = firebase.storage().ref("/pet-pictures/" + file.name);
+        var task = storage.put(file);
+        var petProgressbar = document.getElementById("add-pet-progress");
+        task.on("state_changed", function (snapshot) {
+            var progressPercent = snapshot.bytesTransferred / snapshot.totalBytes;
+            $("#add-pet-progress").attr("value", progressPercent);
+            },
+            function error(err) {
+                console.error(err);
+            },
+            function complete() {
+                $("#add-pet-progress").attr("value", 100);
+                var gsReference = firebase.storage().refFromURL("gs://pet-track-63483.appspot.com/pet-pictures/" + file.name);
+                gsReference.getDownloadURL().then(function (url) {
+                    console.log(url);
+                    localStorage.setItem("firebase_uploadURL", url);
+                }).catch(function (error) {
+                    console.error(error);
+                });
+            });
+    });
+
+
     //Add Pet
     $(document).on("click", "#pet-form-submit", (event) => {
         event.stopImmediatePropagation();
@@ -25,6 +52,7 @@ $(document).ready(() => {
                 breed: petBreed,
                 gender: petGender,
                 dob: petBirth,
+                imageId: localStorage.getItem("firebase_uploadURL"),
                 userId: localStorage.getItem("dbUserId")
             }
         }).then((res) => {

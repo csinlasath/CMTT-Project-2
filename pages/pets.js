@@ -28,7 +28,7 @@ class Card extends React.Component {
                     <div className="jsx-3607384524 buttons">
                         <button id="feed" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={this.onClickCard.bind(this)}>Quick Feed</button>
                         <Link href={`/log?id=${this.props.id}`}>
-                            <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success">Log Data</button>
+                            <button id="log" data-id={this.props.id} className="jsx-3607384524 btn btn-success" onClick={this.getPetIdToStorage.bind(this)}>Log Data</button>
                         </Link>
                     </div>
                 </div>
