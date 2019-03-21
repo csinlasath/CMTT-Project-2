@@ -137,12 +137,12 @@ class Profile extends React.Component {
                         </div>
                         <div className="info col-md-4">
                             <h1>{pet.petName}</h1>
-                            <h5>DOB: {pet.dob}</h5>
-                            <h5>Weight: {vet.weight} lbs.</h5>
-                            <h5>Vet: Dr. {vet.vetFirstName} {vet.vetLastName}</h5>
-                            <h5>Phone: {vet.vetPhone}</h5>
-                            <h5>Next Appt: {appt.nextVet}</h5>
-                            <h5>Last Fed: {log.lastFed}</h5>
+	                        <h5>DOB: {pet.dob}</h5>
+	                        <h5>Weight: {latestWeight}</h5>
+	                        <h5>Vet: Dr. {vet.vetFirstName} {vet.vetLastName}</h5>
+	                        <h5>Phone: {vet.vetPhone}</h5>
+	                        <h5>Next Appt:  {nextApptTime} {nextApptDate}</h5>
+	                        <h5>Last Fed: {lastFed}</h5>
                         </div>
                         <div className="buttons col-md-4">
                             <Link href={`/petdetails?id=${pet.id}`}>
