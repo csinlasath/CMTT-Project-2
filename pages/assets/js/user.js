@@ -27,6 +27,7 @@ $(document).ready(() => {
     const signOutApp = () => {
         firebase.auth().signOut().then(() => {
             console.log("User Signed Out.");
+            localStorage.clear();
             window.location.href = "/";
         }).catch(err => {
             console.error(err)
