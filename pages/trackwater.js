@@ -109,7 +109,7 @@ class Water extends React.Component {
             var elements = [];
             for (var i = 0; i < water.length; i++) {
                 if (water[i].logType === 1) {
-                    elements.push(<Date key={"date-number-" + i} date={moment().local(water[0].createdAt.split(".")[0]).format("MM/DD/YYYY hh:mm a")} targetId={"#modal" + water[i].id} />);
+                    elements.push(<Date key={"date-number-" + i} date={moment.utc(water[i].createdAt.split(".")[0]).local().format("MM/DD/YYYY hh:mm a")} targetId={"#modal" + water[i].id} />);
                     elements.push(<WaterModal key={"modal-number-" + i} waterMeasure={water[i].waterMeasure} waterMeal={water[i].waterMeal} waterNotes={water[i].waterNotes} id={"modal" + water[i].id} />);
                 };
             };

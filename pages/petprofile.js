@@ -1,6 +1,8 @@
 import SignedInLayout from '../views/layouts/signedInLayout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
+var moment = require('moment');
+moment().format();
 
 class Profile extends React.Component {
     constructor(props) {
@@ -13,6 +15,10 @@ class Profile extends React.Component {
             vet: [],
             log: [],
             appt: [],
+            lastFed: null,
+            latestWeight: null,
+            nextApptTime: null,
+            nextApptDate: null
         };
     }
     static getInitialProps({ query }) {
@@ -53,9 +59,24 @@ class Profile extends React.Component {
                             .then(res => res.json())
                             .then(
                                 (result) => {
+                                    let lastFed1 = [];
+                                    let lastWeight1 = [];
+                                    for (let i = 0; i < result.length; i++) {
+                                        if (result[i].logType === 0) {
+                                            let feedTimes = [];
+                                            feedTimes.push(result[i].createdAt);
+                                            lastFed1 = feedTimes[feedTimes.length - 1];
+                                            lastFed1 = moment.utc(lastFed1.split(".")[0]).local().format("MM/DD hh:mm a")
+                                        }
+                                        else if (result[i].logType === 3) {
+                                            lastWeight1 = result[i].weight;
+                                        };
+                                    };
                                     this.setState({
                                         isLoaded: true,
-                                        log: result
+                                        log: result,
+                                        lastFed: lastFed1,
+                                        latestWeight: lastWeight1
                                     });
                                 },
                                 (error) => {
@@ -68,9 +89,17 @@ class Profile extends React.Component {
                                     .then(res => res.json())
                                     .then(
                                         (result) => {
+                                            let nextApptTime1 = null;
+                                            let nextApptDate1 = null;
+                                            for (let i = 0; i < result.length; i++) {
+                                                nextApptDate1 = result[i].date;
+                                                nextApptTime1 = result[i].time;
+                                            }
                                             this.setState({
                                                 isLoaded: true,
-                                                appt: result
+                                                appt: result,
+                                                nextApptTime: nextApptTime1,
+                                                nextApptDate: nextApptDate1
                                             });
                                         },
                                         (error) => {
@@ -85,7 +114,7 @@ class Profile extends React.Component {
             )
     }
     render() {
-        const { error, isLoaded, pet, vet, log, appt } = this.state;
+        const { error, isLoaded, pet, vet, log, appt, lastFed, latestWeight, nextApptTime, nextApptDate } = this.state;
         if (pet.imageId === null) {
             pet.imageId = "/static/images/enzo.jpg";
         }
