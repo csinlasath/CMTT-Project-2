@@ -171,7 +171,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         len: [1, 45]
-      }
+      },
+      default: 0
     },
 
     exerciseTimeHours: {
@@ -179,7 +180,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         len: [1, 45]
-      }
+      },
+      default: 0
     },
 
     exerciseNotes: {

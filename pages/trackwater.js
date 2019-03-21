@@ -5,7 +5,7 @@ moment().format();
 
 const Date = (props) => (
     <div>
-        <button id="potty-notes" data-toggle="modal" data-target={props.targetId} className="pottyDate btn btn-success">{props.date}</button>
+        <button id="water-notes" data-toggle="modal" data-target={props.targetId} className="waterDate btn btn-success">{props.date}</button>
         <style jsx>{`
                 #pet-exercise-title{
                     text-align: center;
@@ -13,7 +13,7 @@ const Date = (props) => (
                 button {
                     width: 100%;
                 }
-                .pottyDate {
+                .waterDate {
                     margin-bottom: 7px;
                 }
                 `}
@@ -38,7 +38,7 @@ const WaterModal = (props) => (
                     <div className="modal-body">
                         <p><strong>How Much Did They Drink? </strong> {props.waterMeasure}</p>
                         <p><strong>Around What Meal Was It? </strong> {props.waterMeal}</p>
-                        <p><strong>Notes: </strong> {props.waterNotes}</p>
+                        <p><strong>Additional Notes: </strong> {props.waterNotes}</p>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
@@ -118,11 +118,9 @@ class Water extends React.Component {
             <SignedInLayout>
                 <CardBackground>
                     <div>
-                        <h1>Latest Potty Breaks</h1>
+                        <h1>Water Break</h1>
                     </div>
                     {elements}
-                    {/* <Date date="3/17/2019 at 4:20" pottyModal="#pottyModal" /> */}
-                    {/* <PottyModal pottyModal={"pottyModal"} pottyData1={"Test"} /> */}
                 </CardBackground>
                 <style jsx>{`
                 #pet-exercise-title{
