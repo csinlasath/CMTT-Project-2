@@ -12,6 +12,7 @@ const CardBackground = (props) => (
                   
                   .container {
                       margin-top: 100px;
+                      margin-bottom: 150px;
                   }
         `}</style>
     </div>
