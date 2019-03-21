@@ -3,8 +3,6 @@ import CardBackground from '../views/cardBackground';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 
-const defaultImage = ["/static/images/bacchus.jpg"];
-
 class Card extends React.Component {
     constructor(props) {
         super(props);
@@ -104,9 +102,9 @@ class CardContainer extends React.Component {
         } else {
             var elements = [];
             for (var i = 0; i < pets.length; i++) {
-                if (pets[i].imageId === null) {
+                if (pets[i].imageId === "") {
                     pets[i].imageId = "/static/images/enzo.jpg";
-                } 
+                }
                 elements.push(<Card key={"card-number-" + (i + 1)} name={pets[i].petName} image={pets[i].imageId} id={pets[i].id} onClickHandler={this.clickEvent} />);
             };
         }
