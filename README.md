@@ -14,3 +14,13 @@ Project Bacchus is an app that allows users to login, input and store pet inform
 
 *Deployed Version*
 https://cmatt-project-2.herokuapp.com/
+
+The app uses:
+
+* [React](https://reactjs.org/)
+* [Next.js](https://nextjs.org/)
+* [Express](https://www.npmjs.com/package/express)
+* [MySQL](https://www.mysql.com/)
+* [Sequelize](https://www.npmjs.com/package/sequelize)
+* [isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch)
+* [React Bootstrap](https://react-bootstrap.github.io/)
