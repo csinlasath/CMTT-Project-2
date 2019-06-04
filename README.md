@@ -24,3 +24,5 @@ The app uses:
 * [Sequelize](https://www.npmjs.com/package/sequelize)
 * [isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch)
 * [React Bootstrap](https://react-bootstrap.github.io/)
+
+![Bacchus](/static/images/bacchusMain.png)
